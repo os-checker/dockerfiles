@@ -1,9 +1,8 @@
 FROM ubuntu:22.04
 
-RUN apt update && apt install curl -y && \
+RUN apt update && apt -qq install curl -y && \
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y && \
-  echo "export CARGO_TERM_COLOR=always" >> ~/.bashrc && \
-  ls -alh ~/.bashrc && cat ~/.bashrc
+  echo "export CARGO_TERM_COLOR=always" >> ~/.bashrc
 
 COPY . /os-checker
 
