@@ -7,5 +7,5 @@ COPY . /os-checker
 
 WORKDIR /os-checker
 
-ENTRYPOINT ["bash", "-c"]
+ENTRYPOINT ["bash", "-l", "-c"]
 CMD ["rustup --help"]
