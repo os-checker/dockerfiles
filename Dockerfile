@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt -yq install curl && \
+RUN apt update && apt -y install curl > /dev/null && \
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y && \
   echo "export CARGO_TERM_COLOR=always" >> ~/.bashrc
 
