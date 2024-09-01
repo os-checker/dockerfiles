@@ -21,5 +21,5 @@ jobs:
       run: docker build -t test .
 
     - name: Run Docker Image
-      run: docker run -e CARGO_TERM_COLOR=always test
+      run: docker run test
     #############################
