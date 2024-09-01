@@ -10,4 +10,4 @@ COPY . /os-checker
 WORKDIR /os-checker
 
 ENTRYPOINT ["bash", "-l", "-c"]
-CMD [". ~/.bashrc && rustup --help"]
+CMD ["rustup --help"]
