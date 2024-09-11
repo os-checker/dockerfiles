@@ -17,5 +17,5 @@ jobs:
         run: |
           rustup toolchain add nightly-2023-12-30 --profile minimal -c rust-src,rustc-dev,llvm-tools-preview
           rustup default nightly-2023-12-30
-          cargo mirai
+          cargo mirai --workspace
 
