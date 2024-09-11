@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: os-checker/os-checker-test-suite
+          repository: os-checker/MIRAI
 
       - name: Install MIRIAI
         run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/os-checker/MIRAI/releases/download/v1.1.9/mirai-installer.sh | sh
@@ -17,5 +17,8 @@ jobs:
         run: |
           rustup toolchain add nightly-2023-12-30 --profile minimal -c rust-src,rustc-dev,llvm-tools-preview
           rustup default nightly-2023-12-30
-          MIRAI_FLAGS=--diag=verify cargo mirai --workspace
+
+      - name: Run MIRAI
+        run: |
+          MIRAI_FLAGS=--diag=verify cargo mirai -p shopping_cart
 
