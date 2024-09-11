@@ -22,6 +22,6 @@ jobs:
         run: |
           ls -alh $(which cargo-mirai)
           ls -alh $(which mirai)
-          cd examples/shopping_cart
+          cd checker
           MIRAI_FLAGS=--diag=verify cargo mirai
 
