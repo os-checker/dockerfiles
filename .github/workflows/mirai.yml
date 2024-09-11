@@ -11,7 +11,7 @@ jobs:
           repository: os-checker/os-checker-test-suite
 
       - name: Install MIRIAI
-        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/facebookexperimental/MIRAI/releases/download/v1.1.9/mirai-installer.sh | sh
+        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/os-checker/MIRAI/releases/download/v1.1.9/mirai-installer.sh | sh
 
       - name: Set up Rust toolchain for MIRAI
         run: |
