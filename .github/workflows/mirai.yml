@@ -20,5 +20,5 @@ jobs:
 
       - name: Run MIRAI
         run: |
-          MIRAI_FLAGS=--diag=verify cargo mirai -p shopping_cart
+          MIRAI_FLAGS=--diag=verify cargo mirai -p mirai-standard-contracts
 
