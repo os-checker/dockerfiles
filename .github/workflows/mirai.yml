@@ -21,5 +21,6 @@ jobs:
       - name: Run MIRAI
         run: |
           ls -alh $(which cargo-mirai)
+          ls -alh $(which mirai)
           MIRAI_FLAGS=--diag=verify cargo mirai -p mirai-standard-contracts
 
