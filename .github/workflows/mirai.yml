@@ -49,13 +49,13 @@ jobs:
       - name: Run MIRAI (--statistics)
         run: |
           cargo clean
-          echo "--diag=default"
+          echo "--diag=paranoid"
           time MIRAI_FLAGS="--statistics --diag=paranoid" cargo +nightly-2023-12-30 mirai
           cargo clean
-          echo "--diag=default"
+          echo "--diag=library"
           time MIRAI_FLAGS="--statistics --diag=library" cargo +nightly-2023-12-30 mirai
           cargo clean
-          echo "--diag=default"
+          echo "--diag=verify"
           time MIRAI_FLAGS="--statistics --diag=verify" cargo +nightly-2023-12-30 mirai
           cargo clean
           echo "--diag=default"
