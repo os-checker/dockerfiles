@@ -2,6 +2,9 @@ name: MIRAI
 
 on: [push]
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
   check:
     runs-on: ubuntu-latest
