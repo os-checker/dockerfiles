@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: os-checker/MIRAI
+          repository: os-checker/os-checker-test-suite
 
       - name: Install MIRIAI
         run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/os-checker/MIRAI/releases/download/v1.1.9/mirai-installer.sh | sh
@@ -22,6 +22,6 @@ jobs:
         run: |
           ls -alh $(which cargo-mirai)
           ls -alh $(which mirai)
-          cd checker
-          MIRAI_FLAGS="--diag=verify --statistics" cargo +nightly-2023-12-30 mirai --tests --no-default-features
+          cd mirai-checks-this
+          MIRAI_FLAGS="--diag=verify --statistics" cargo +nightly-2023-12-30 mirai
 
