@@ -1,0 +1,14 @@
+name: Run MIRAI With Docker Image
+
+on: [push]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Pull MIRAI Docker
+        run: docker pull zjpzjp/mirai:latest
+
+      - name: Run MIRAI
+        run: docker run -v $(pwd):/ci -w /ci mirai bash -c "./mirai.sh"
