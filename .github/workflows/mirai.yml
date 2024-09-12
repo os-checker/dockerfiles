@@ -21,7 +21,7 @@ jobs:
           rustup toolchain add nightly-2023-12-30 --profile minimal -c rust-src,rustc-dev,llvm-tools-preview,rustfmt,clippy
           rustup component add clippy
 
-      - name: Run MIRAI
+      - name: Run MIRAI (--diag=paranoid)
         run: |
           ls -alh $(which cargo-mirai)
           ls -alh $(which mirai)
@@ -30,6 +30,21 @@ jobs:
         run: |
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai >/dev/null
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai >/dev/null
+
+      - name: Run MIRAI (--diag=library)
+        run: |
+          cargo clean
+          time MIRAI_FLAGS="--diag=library" cargo +nightly-2023-12-30 mirai
+
+      - name: Run MIRAI (--diag=verify)
+        run: |
+          cargo clean
+          time MIRAI_FLAGS="--diag=verify" cargo +nightly-2023-12-30 mirai
+
+      - name: Run MIRAI (--diag=default)
+        run: |
+          cargo clean
+          time MIRAI_FLAGS="--diag=default" cargo +nightly-2023-12-30 mirai
 
       - name: Run Clippy
         run: |
