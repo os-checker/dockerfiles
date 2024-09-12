@@ -12,5 +12,9 @@ jobs:
           docker pull zjpzjp/mirai:latest
           docker images -a
 
-      - name: Run MIRAI
-        run: docker run -v $(pwd):/ci -w /ci zjpzjp/mirai:latest "pwd && ls -alh"
+      ######## Local Image ########
+      - name: Build Docker Image
+        run: docker build -t test .
+
+      - name: Run Docker Image
+        run: docker run test "pwd && ls -alh"
