@@ -25,6 +25,9 @@ jobs:
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
+
+      - name: Run Clippy
+        run: |
           cargo clean
           time cargo +nightly-2023-12-30 clippy
           time cargo +nightly-2023-12-30 clippy
