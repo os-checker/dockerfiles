@@ -1,4 +1,4 @@
 FROM zjpzjp/mirai:latest
 COPY . /ci
 WORKDIR /ci
-CMD ["bash", "-lc", "bash mirai.sh"]
+CMD ["bash", "-lc", "ls -alh && bash mirai.sh"]
