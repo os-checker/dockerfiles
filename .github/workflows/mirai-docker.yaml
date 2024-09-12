@@ -13,4 +13,4 @@ jobs:
           docker images -a
 
       - name: Run MIRAI
-        run: docker run -v $(pwd):/ci -w /ci zjpzjp/mirai:latest bash -c "./mirai.sh"
+        run: docker run -v $(pwd):/ci -w /ci zjpzjp/mirai:latest bash "/ci/mirai.sh"
