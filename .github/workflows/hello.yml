@@ -21,6 +21,6 @@ jobs:
       run: docker build -t test .
 
     - name: Run Docker Image
-      run: docker run test cat .github/ci/hello.sh
+      run: docker run test "cat .github/ci/hello.sh"
     #############################
 
