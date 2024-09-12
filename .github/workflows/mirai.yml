@@ -23,5 +23,7 @@ jobs:
           ls -alh $(which cargo-mirai)
           ls -alh $(which mirai)
           cd mirai-checks-this
-          MIRAI_FLAGS="--diag=verify --statistics" cargo +nightly-2023-12-30 mirai
+          MIRAI_FLAGS="--diag=paraniod" cargo +nightly-2023-12-30 mirai
+          MIRAI_FLAGS="--diag=paraniod" cargo +nightly-2023-12-30 mirai
+          MIRAI_FLAGS="--diag=paraniod" cargo +nightly-2023-12-30 mirai
 
