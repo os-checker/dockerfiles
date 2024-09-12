@@ -8,7 +8,9 @@ jobs:
     
     steps:
       - name: Pull MIRAI Docker
-        run: docker pull zjpzjp/mirai:latest
+        run: |
+          docker pull zjpzjp/mirai:latest
+          docker images -a
 
       - name: Run MIRAI
-        run: docker run -v $(pwd):/ci -w /ci mirai bash -c "./mirai.sh"
+        run: docker run -v $(pwd):/ci -w /ci zjpzjp/mirai:latest bash -c "./mirai.sh"
