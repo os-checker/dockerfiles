@@ -22,11 +22,10 @@ jobs:
         run: |
           ls -alh $(which cargo-mirai)
           ls -alh $(which mirai)
-          cd mirai-checks-this
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
           time MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
           cargo clean
-          time cargo clippy
-          time cargo clippy
-          time cargo clippy
+          time cargo +nightly-2023-12-30 clippy
+          time cargo +nightly-2023-12-30 clippy
+          time cargo +nightly-2023-12-30 clippy
