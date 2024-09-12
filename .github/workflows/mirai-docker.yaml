@@ -8,15 +8,17 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-
-      - name: Pull MIRAI Docker
-        run: |
-          docker pull zjpzjp/mirai:latest
-          docker images -a
+      #
+      # - name: Pull MIRAI Docker
+      #   run: |
+      #     docker pull zjpzjp/mirai:latest
+      #     docker images -a
 
       ######## Local Image ########
       - name: Build Docker Image
-        run: docker build -t test .
+        run: |
+          docker build -t test .
+          docker images -a
 
       - name: Run Docker Image
         run: docker run test 
