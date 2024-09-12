@@ -19,4 +19,4 @@ jobs:
         run: docker build -t test .
 
       - name: Run Docker Image
-        run: docker run test bash -lc cargo -V
+        run: docker run test cargo -V
