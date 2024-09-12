@@ -16,9 +16,7 @@ jobs:
       - name: Set up Rust toolchain for MIRAI
         run: |
           rustup toolchain add nightly-2023-12-30 --profile minimal -c rust-src,rustc-dev,llvm-tools-preview,rustfmt,clippy
-          rustup default nightly-2023-12-30
-          cargo fmt --version
-          cargo clippy --version
+          rustup component add clippy
 
       - name: Run MIRAI
         run: |
