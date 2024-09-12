@@ -1,3 +1,3 @@
 FROM zjpzjp/mirai:latest
 COPY . /ci
-RUN ["bash mirai.sh"]
+RUN ["bash", "mirai.sh"]
