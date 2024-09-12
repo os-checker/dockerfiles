@@ -17,6 +17,8 @@ jobs:
         run: |
           rustup toolchain add nightly-2023-12-30 --profile minimal -c rust-src,rustc-dev,llvm-tools-preview,rustfmt,clippy
           rustup default nightly-2023-12-30
+          cargo fmt --version
+          cargo clippy --version
 
       - name: Run MIRAI
         run: |
@@ -26,5 +28,3 @@ jobs:
           MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
           MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
           MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai
-          cargo fmt
-          cargo clippy
