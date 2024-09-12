@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: kern-crates/rboot
+          repository: kern-crates/CSpace
 
       - name: Install MIRIAI
         run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/os-checker/MIRAI/releases/download/v1.1.9/mirai-installer.sh | sh
