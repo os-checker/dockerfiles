@@ -1,0 +1,25 @@
+name: Lockbud
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/os-checker-test-suite
+
+      - name: Setup toolchain
+        run: rustup toolchain install nightly-2024-05-21 --component rust-src,rustc-dev,llvm-tools-preview
+
+      - name: Install lockbud
+        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/os-checker/lockbud/releases/download/v0.1.0/lockbud-installer.sh | sh
+
+      - name: Run lockbud
+        run: |
+          cd lockbud-checks-this
+          cargo +nightly-2024-05-21 lockbud -k all
