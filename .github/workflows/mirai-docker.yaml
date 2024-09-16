@@ -8,7 +8,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      - run: df -alh
+      - run: df -alh && free -h
       #
       # - name: Pull MIRAI Docker
       #   run: |
@@ -21,9 +21,9 @@ jobs:
           docker build -t test .
           docker images -a
 
-      - run: df -alh
+      - run: df -alh && free -h
 
       - name: Run Docker Image
         run: docker run test 
 
-      - run: df -alh
+      - run: df -alh && free -h
