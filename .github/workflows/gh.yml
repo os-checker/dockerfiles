@@ -1,9 +1,9 @@
-name: Lockbud
+name: Github API
 
 on: [push]
 
 env:
-  CARGO_TERM_COLOR: always
+  GH_TOKEN: ${{ github.token }}
 
 jobs:
   check:
