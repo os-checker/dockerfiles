@@ -24,5 +24,8 @@ gh api repos/os-checker/os-checker/branches/$branch --jq \
   "{$meta, sha: .commit.sha, mes: .commit.commit.message, author: .commit.commit.author, committer: .commit.commit.committer}"
 
 gh release download -R os-checker/database cache.redb -p cache.redb
-
+echo "成功下载 cache.redb"
 ls -alh
+
+gh release upload --clobber -R os-checker/database cache.redb cache.redb
+echo "成功上传 cache.redb"
