@@ -2,8 +2,8 @@ name: Github API
 
 on: [push]
 
-# env:
-#   GH_TOKEN: ${{ github.token }}
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   check:
