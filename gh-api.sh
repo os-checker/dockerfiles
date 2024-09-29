@@ -22,3 +22,7 @@ export meta="user: \"$user\", repo: \"$repo\", branch: \"$branch\""
 # }
 gh api repos/os-checker/os-checker/branches/$branch --jq \
   "{$meta, sha: .commit.sha, mes: .commit.commit.message, author: .commit.commit.author, committer: .commit.commit.committer}"
+
+gh release download -R os-checker/database cache.redb -p cache.redb
+
+ls -alh
