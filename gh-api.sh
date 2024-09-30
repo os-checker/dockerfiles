@@ -38,8 +38,8 @@ ls -alh
 # ouch c --slow cache.redb cache.redb.tar.gz
 XZ_OPT=-e9 tar -cJvf cache.redb.tar.xz cache.redb
 ls -alh
-gh release upload --clobber -R os-checker/database cache.redb cache.redb.tar.gz
-echo "成功上传 cache.redb.tar.gz"
+gh release upload --clobber -R os-checker/database cache.redb cache.redb.tar.xz
+echo "成功上传 cache.redb.tar.xz"
 
 # 解压缩
 mkdir tmp
