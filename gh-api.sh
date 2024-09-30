@@ -27,5 +27,15 @@ gh release download -R os-checker/database cache.redb -p cache.redb
 echo "成功下载 cache.redb"
 ls -alh
 
-gh release upload --clobber -R os-checker/database cache.redb cache.redb
-echo "成功上传 cache.redb"
+# gh release upload --clobber -R os-checker/database cache.redb cache.redb
+# echo "成功上传 cache.redb"
+
+# install ouch
+wget https://github.com/ouch-org/ouch/releases/download/0.5.1/ouch-x86_64-unknown-linux-gnu.tar.gz
+tar -zxvf ouch-x86_64-unknown-linux-gnu.tar.gz
+mv ouch-x86_64-unknown-linux-gnu/ouch ~/.cargo/bin
+# compress cache.redb
+ouch c --slow cache.redb cache.redb.tar.gz
+ls -alh
+gh release upload --clobber -R os-checker/database cache.redb cache.redb.tar.gz
+echo "成功上传 cache.redb.tar.gz"
