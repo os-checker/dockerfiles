@@ -1,0 +1,22 @@
+name: MIRAI
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/RAP
+
+      - name: Install rap
+        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/os-checker/rap/releases/download/v1.0.0/rap-installer.sh | sh
+
+      - name: Test
+        run: |
+          cargo rap --help
+          cd tests/uaf_drop && cargo rap -uaf 
