@@ -17,7 +17,7 @@ jobs:
         run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/os-checker/rap/releases/download/v1.0.0/rap-installer.sh | sh
 
       - name: Check Z3
-        run: apt list --installed | rg "(z3)|(clang)"
+        run: apt-get install ripgrep -y && apt list --installed | rg "(z3)|(clang)"
 
       - name: Test
         run: |
