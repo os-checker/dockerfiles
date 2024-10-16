@@ -39,6 +39,6 @@ jobs:
       - name: Test os-checker-test-suite
         run: |
           cd ~
-          git clone git@github.com:os-checker/os-checker-test-suite.git
+          git clone https://github.com/os-checker/os-checker-test-suite.git
           cd os-checker-test-suite/rap-checks-this
           cargo ${{ env.RAP_TOOLCHAIN }} rap -F
