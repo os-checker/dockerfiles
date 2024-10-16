@@ -9,6 +9,7 @@ env:
    # cache.redb tag in database release
   TAG_CACHE: cache-v6.redb
   RAP_LOG: 
+  RAP_TOOLCHAIN: +nightly-2024-06-30
 
 jobs:
   check:
@@ -31,5 +32,5 @@ jobs:
 
       - name: Test
         run: |
-          cargo rap --help
-          cd tests/uaf_drop && cargo +nightly-2024-06-30 rap -uaf 
+          cargo ${{ env.RAP_TOOLCHAIN }} rap --help
+          cd tests/uaf_drop && cargo ${{ env.RAP_TOOLCHAIN }} rap -uaf 
