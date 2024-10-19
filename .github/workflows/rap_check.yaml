@@ -29,8 +29,8 @@ jobs:
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -help
 
       - name: run check (rap-checks-this)
-        dir: rap-checks-this
         run: |
+          cd rap-checks-this
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M
 
