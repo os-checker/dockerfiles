@@ -1,4 +1,4 @@
-name: RAP
+name: RAP Check
 
 on: [push]
 
