@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: os-checker/RAP
+          repository: Artisan-Lab/RAP
 
       - name: Check Z3
         run: |
