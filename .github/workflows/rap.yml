@@ -42,3 +42,9 @@ jobs:
           git clone https://github.com/os-checker/os-checker-test-suite.git
           cd os-checker-test-suite/rap-checks-this
           cargo ${{ env.RAP_TOOLCHAIN }} rap -F
+
+      - name: cargo-audit
+        run: cargo audit --version
+
+      - name: View ~/.cargo/bin/
+        run: ls -alh ~/.cargo/bin/
