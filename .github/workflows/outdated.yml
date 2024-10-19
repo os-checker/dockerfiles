@@ -6,6 +6,7 @@ env:
   CARGO_TERM_COLOR: always
   # gh cli needs this token
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  OUTDATE_OPTION: -R --exit-code 2
 
 jobs:
   check:
@@ -22,10 +23,10 @@ jobs:
           mv cargo-outdated ~/.cargo/bin/
 
       - name: Run cargo-outdated (root)
-        run: cargo outdated
+        run: cargo outdated ${{ env.OUTDATE_OPTION }}
 
       - name: Run cargo-outdated (os-checker-types)
-        run: cd os-checker-types && cargo outdated
+        run: cd os-checker-types && cargo outdated ${{ env.OUTDATE_OPTION }}
 
       - name: Run cargo-outdated (os-checker-database)
-        run: cd os-checker-database && cargo outdated
+        run: cd os-checker-database && cargo outdated ${{ env.OUTDATE_OPTION }}
