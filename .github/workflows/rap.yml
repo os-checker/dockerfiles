@@ -44,7 +44,10 @@ jobs:
           cargo ${{ env.RAP_TOOLCHAIN }} rap -F
 
       - name: cargo-audit
-        run: cargo audit --version
+        run: |
+          cargo audit --version # built in GA; should be greater than v0.21
+          cargo install cargo-audit --version v0.21.0-rc.0 --force
+          gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} ~/.cargo/bin/cargo-audit
 
       - name: View ~/.cargo/bin/
         run: ls -alh ~/.cargo/bin/
