@@ -1,0 +1,48 @@
+name: RAP Check V7
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+  # gh cli needs this token
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+   # cache.redb tag in database release
+  TAG_CACHE: cache-v7.redb
+  RAP_LOG: info
+  PLUS_RAP_TOOLCHAIN: +nightly-2024-06-30
+  RAP_TOOLCHAIN: nightly-2024-06-30
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/os-checker-test-suite
+
+      - name: download rap
+        run: |
+          gh release download --clobber -R os-checker/database ${{ env.TAG_CACHE }} -p rap -p cargo-rap -D ~/.cargo/bin
+          chmod +x ~/.cargo/bin/rap
+          chmod +x ~/.cargo/bin/cargo-rap
+          rustup install ${{ env.RAP_TOOLCHAIN }}
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -help
+
+      - name: run check (rap-checks-this)
+        run: |
+          cd rap-checks-this
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M
+
+      # - name: run check (root)
+      #   run: |
+      #     cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
+      #     cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M
+
+      - name: run check (rvfs)
+        run: |
+          cd ~
+          git clone https://github.com/kern-crates/rvfs.git
+          cd rvfs/devfs
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M

@@ -1,4 +1,4 @@
-name: RAP Check
+name: RAP Check V6
 
 on: [push]
 
@@ -34,7 +34,15 @@ jobs:
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M
 
-      - name: run check (root)
+      # - name: run check (root)
+      #   run: |
+      #     cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
+      #     cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M
+
+      - name: run check (rvfs)
         run: |
+          cd ~
+          git clone https://github.com/kern-crates/rvfs.git
+          cd rvfs/devfs
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M
