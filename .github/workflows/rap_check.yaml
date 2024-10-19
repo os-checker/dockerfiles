@@ -22,7 +22,7 @@ jobs:
 
       - name: download rap
         run: |
-          gh release download --clobber -R os-checker/database ${{ env.TAG_CACHE }} rap cargo-rap -D ~/.cargo/bin
+          gh release download --clobber -R os-checker/database ${{ env.TAG_CACHE }} -p rap -p cargo-rap -D ~/.cargo/bin
           rustup install ${{ env.RAP_TOOLCHAIN }}
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -help
 
