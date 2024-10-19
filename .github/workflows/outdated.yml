@@ -1,0 +1,31 @@
+name: Outdated
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+  # gh cli needs this token
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/os-checker
+
+      - name: Install cargo-outdated
+        run: |
+          https://github.com/kbknapp/cargo-outdated/releases/download/v0.15.0/cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz
+          tar xvzf cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz
+          mv cargo-outdated ~/.cargo/bin/
+
+      - name: Run cargo-outdated (root)
+        run: cargo outdated
+
+      - name: Run cargo-outdated (os-checker-types)
+        run: cd os-checker-types && cargo outdated
+
+      - name: Run cargo-outdated (os-checker-database)
+        run: cd os-checker-database && cargo outdated
