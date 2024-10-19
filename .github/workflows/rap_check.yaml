@@ -1,0 +1,32 @@
+name: RAP
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+  # gh cli needs this token
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+   # cache.redb tag in database release
+  TAG_CACHE: cache-v7.redb
+  RAP_LOG: warn
+  PLUS_RAP_TOOLCHAIN: +nightly-2024-06-30
+  RAP_TOOLCHAIN: nightly-2024-06-30
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/os-checker-test-suite
+
+      - name: download rap
+        run: |
+          gh release download --clobber -R os-checker/database ${{ env.TAG_CACHE }} rap cargo-rap -D ~/.cargo/bin
+          rustup install ${{ env.RAP_TOOLCHAIN }}
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -help
+
+      - name: run check
+        run: |
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -F
+          cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -M
