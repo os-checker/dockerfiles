@@ -1,5 +1,12 @@
 name: Generate & Upload repos-default.json
 
+on:
+  schedule:
+    - cron: '0 0/4 * * *'
+  push:
+    branches:
+      - main
+
 env:
   # gh cli needs this token
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
