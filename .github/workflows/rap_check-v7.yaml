@@ -11,6 +11,7 @@ env:
   RAP_LOG: info
   PLUS_RAP_TOOLCHAIN: +nightly-2024-06-30
   RAP_TOOLCHAIN: nightly-2024-06-30
+  REBUILD: true
 
 jobs:
   check:
@@ -20,11 +21,26 @@ jobs:
         with:
           repository: os-checker/os-checker-test-suite
 
+      - name: install rap
+        if: ${{ env.REBUILD == 'true' }}
+        run: |
+          cd ~
+          git clone https://github.com/os-checker/RAP.git
+          cd RAP/rap
+          git switch fix/cargo-check-arguments-forwarding
+          cargo install --path .
+          cd ~/.cargo/bin
+          gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} rap cargo-rap 
+
       - name: download rap
+        if: ${{ env.REBUILD != 'true' }}
         run: |
           gh release download --clobber -R os-checker/database ${{ env.TAG_CACHE }} -p rap -p cargo-rap -D ~/.cargo/bin
           chmod +x ~/.cargo/bin/rap
           chmod +x ~/.cargo/bin/cargo-rap
+
+      - name: install toolchain
+        run: |
           rustup install ${{ env.RAP_TOOLCHAIN }}
           cargo ${{ env.PLUS_RAP_TOOLCHAIN }} rap -help
 
