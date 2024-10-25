@@ -1,0 +1,21 @@
+name: Generate & Upload repos-default.json
+
+env:
+  # gh cli needs this token
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+   # cache.redb tag in database release
+  TAG_CACHE: cache-v8.redb
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download data.json
+        # kern-crates regularly update data.json as a release asset
+        run: wget https://github.com/kern-crates/.github/releases/download/v0.1/data.json
+
+      - name: Generate repos-default.json
+        run: jq "map(.repo) | unique" data.json > repos-default.json
+
+      - name: Upload repos-default.json
+        run: gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} repos-default.json
