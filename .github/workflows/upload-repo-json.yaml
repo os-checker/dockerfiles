@@ -22,7 +22,7 @@ jobs:
         run: wget https://github.com/kern-crates/.github/releases/download/v0.1/data.json
 
       - name: Generate repos-default.json
-        run: jq "map(.repo) | unique" data.json > repos-default.json
+        run: jq "map(.repo) | unique | map({(.):{}}) | add" data.json > repos-default.json
 
       - name: Upload repos-default.json
         run: gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} repos-default.json
