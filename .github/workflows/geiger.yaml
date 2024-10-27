@@ -1,0 +1,49 @@
+name: Publish cargo-geiger
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+  # gh cli needs this token
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+   # cache.redb tag in database release
+  TAG_CACHE: cache-v7.redb
+  REBUILD: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/os-checker-test-suite
+
+      - name: install cargo-geiger
+        if: ${{ env.REBUILD == 'true' }}
+        run: |
+          cd ~
+          # cargo-geiger with syn v2
+          git clone https://github.com/os-checker/fork-cargo-geiger.git
+          git switch os-checker
+          cd fork-cargo-geiger/
+          cargo install --path cargo-geiger
+          cd ~/.cargo/bin
+          gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} cargo-geiger
+
+      - name: download cargo-geiger
+        if: ${{ env.REBUILD != 'true' }}
+        run: |
+          gh release download --clobber -R os-checker/database ${{ env.TAG_CACHE }} -p cargo-geiger -D ~/.cargo/bin
+          chmod +x ~/.cargo/bin/cargo-geiger
+
+      - name: run check 
+        run: |
+          cd ~
+          git clone https://github.com/os-checker/os-checker-test-suite
+          cd os-checker/os-checker-test-suite
+          cargo geiger
+          cd workspace2/crates/ws-lockbud-checks-this1
+          echo "geiger by default (with emoji)"
+          cargo geiger
+          echo "geiger with Ascii chars"
+          cargo geiger --output-format Ascii
