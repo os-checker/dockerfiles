@@ -27,7 +27,6 @@ jobs:
           cd ~
           git clone https://github.com/os-checker/RAP.git
           cd RAP/rap
-          git switch fix/cargo-check-arguments-forwarding
           cargo install --path .
           cd ~/.cargo/bin
           gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} rap cargo-rap 
