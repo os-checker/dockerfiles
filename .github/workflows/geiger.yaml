@@ -26,6 +26,7 @@ jobs:
           git clone https://github.com/os-checker/fork-cargo-geiger.git
           cd fork-cargo-geiger/
           git switch os-checker
+          rm rust-toolchain
           cargo install --path cargo-geiger
           cd ~/.cargo/bin
           gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} cargo-geiger
