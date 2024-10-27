@@ -24,8 +24,8 @@ jobs:
           cd ~
           # cargo-geiger with syn v2
           git clone https://github.com/os-checker/fork-cargo-geiger.git
-          git switch os-checker
           cd fork-cargo-geiger/
+          git switch os-checker
           cargo install --path cargo-geiger
           cd ~/.cargo/bin
           gh release upload --clobber -R os-checker/database ${{ env.TAG_CACHE }} cargo-geiger
