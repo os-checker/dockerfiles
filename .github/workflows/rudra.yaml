@@ -8,7 +8,7 @@ env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
    # cache.redb tag in database release
   TAG_CACHE: cache-v7.redb
-  REBUILD: false
+  REBUILD: true
 
 jobs:
   check:
