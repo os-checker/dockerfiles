@@ -33,6 +33,7 @@ jobs:
           gh release download --clobber -R os-checker/database ${{ env.TAG_CACHE }} -p cargo-rudra -p rudra -D ~/.cargo/bin
           chmod +x ~/.cargo/bin/rudra
           chmod +x ~/.cargo/bin/cargo-rudra
+          rustup show
 
       - name: run check 
         run: |
