@@ -8,16 +8,13 @@ env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
    # cache.redb tag in database release
   TAG_CACHE: cache-v7.redb
-  REBUILD: true
+  REBUILD: false
+  RUSTUP_TOOLCHAIN: nightly-2021-10-21
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: os-checker/os-checker-test-suite
-
       - name: install rudra
         if: ${{ env.REBUILD == 'true' }}
         run: |
@@ -37,14 +34,10 @@ jobs:
           chmod +x ~/.cargo/bin/rudra
           chmod +x ~/.cargo/bin/cargo-rudra
 
-      # - name: run check 
-      #   run: |
-      #     cd ~
-      #     git clone https://github.com/os-checker/os-checker-test-suite
-      #     cd os-checker-test-suite
-      #     cargo geiger
-      #     cd workspace2/crates/ws-lockbud-checks-this1
-      #     echo "geiger by default (with emoji)"
-      #     cargo geiger
-      #     echo "geiger with Ascii chars"
-      #     cargo geiger --output-format Ascii
+      - name: run check 
+        run: |
+          cd ~
+          git clone https://github.com/os-checker/os-checker-test-suite
+          cd os-checker-test-suite/rudra-checks-this
+          cargo +${{ env.RUSTUP_TOOLCHAIN }} rudra
+
