@@ -13,5 +13,6 @@ jobs:
 
       - name: gh api
         run: |
+          which busybox || true
           gh auth status
           sh gh-api.sh
