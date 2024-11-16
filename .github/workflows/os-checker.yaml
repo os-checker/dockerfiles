@@ -1,4 +1,4 @@
-name: RAP Check V7
+name: os-checker
 
 on: [push]
 
