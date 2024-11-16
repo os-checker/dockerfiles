@@ -34,7 +34,7 @@ jobs:
 
       - name: layout --list-targets
         env:
-          repos: Starry-OS/Starry
+          repos: AsyncModules/embassy-priority
         run: |
           mkdir ~/check
           gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json -D ~/check
