@@ -37,3 +37,4 @@ jobs:
           cd ~/check
           ls -alh 
           os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }}
+          tree
