@@ -20,7 +20,10 @@ jobs:
           repository: os-checker/os-checker
 
       - name: download os-checker
-        run: gh release download -R os-checker/database ${{ env.TAG_CACHE }} -p os-checker -D ~/.cargo/bin/ && ls -alh ~/.cargo/bin/
+        run: |
+          gh release download -R os-checker/database ${{ env.TAG_CACHE }} -p os-checker -D ~/.cargo/bin/ 
+          chmod +x ~/.cargo/bin/os-checker
+          ls -alh ~/.cargo/bin/
 
       - name: layout --list-targets
         env:
