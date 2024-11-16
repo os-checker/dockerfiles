@@ -27,7 +27,7 @@ jobs:
 
       - name: layout --list-targets
         env:
-          repos: rel4team/sel4_cspace
+          repos: seL4/rust-sel4
         run: |
           cd assets
           gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json
