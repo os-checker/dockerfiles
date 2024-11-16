@@ -19,6 +19,9 @@ jobs:
         with:
           repository: os-checker/os-checker
 
+      - name: download os-checker
+        run: gh release download -R os-checker/database ${{ env.TAG_CACHE }} -p os-checker -D ~/.cargo/bin/ && ls- alh ~/.cargo/bin/
+
       - name: layout --list-targets
         env:
           repos: rel4team/sel4_cspace
