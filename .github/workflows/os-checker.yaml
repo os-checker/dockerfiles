@@ -19,7 +19,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: os-checker/os-checker
-          # ref: feat/output-package
 
       - uses: dtolnay/rust-toolchain@nightly
         with:
