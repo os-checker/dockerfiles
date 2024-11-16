@@ -1,0 +1,28 @@
+name: RAP Check V7
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+  # gh cli needs this token
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+   # cache.redb tag in database release
+  TAG_CACHE: cache-v11.redb
+  # repos-default.json tag in database release
+  TAG_CACHE_REPOS_DEFAULT: cache-v8.redb
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/os-checker
+
+      - name: layout --list-targets
+        env:
+          repos: rel4team/sel4_cspace
+        run: |
+          cd assets
+          gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json
+          os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }}
