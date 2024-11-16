@@ -30,6 +30,8 @@ jobs:
         env:
           repos: seL4/rust-sel4
         run: |
-          cd assets
-          gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json
+          mkdir ~/check
+          gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json -D ~/check
+          cp assets/repos-ui.json ~/check/
+          cd ~/check
           os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }}
