@@ -19,6 +19,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: os-checker/os-checker
+          ref: feat/output-package
 
       - uses: dtolnay/rust-toolchain@nightly
         with:
@@ -34,7 +35,7 @@ jobs:
 
       - name: layout --list-targets
         env:
-          repos: AsyncModules/embassy-priority
+          repos: seL4/rust-sel4
         run: |
           mkdir ~/check
           gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json -D ~/check
