@@ -24,6 +24,7 @@ jobs:
         run: |
           gh release download -R os-checker/database ${{ env.TAG_CACHE }} -p os-checker -D ~/.cargo/bin/ 
           chmod +x ~/.cargo/bin/os-checker
+          os-checker layout --help
           ls -alh ~/.cargo/bin/
 
       - name: layout --list-targets
@@ -34,4 +35,5 @@ jobs:
           gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json -D ~/check
           cp assets/repos-ui.json ~/check/
           cd ~/check
+          ls -alh 
           os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }}
