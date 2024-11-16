@@ -20,6 +20,11 @@ jobs:
         with:
           repository: os-checker/os-checker
 
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          toolchain: nightly-2024-11-15
+          components: rustfmt, clippy
+
       - name: download os-checker
         run: |
           gh release download -R os-checker/database ${{ env.TAG_CACHE }} -p os-checker -D ~/.cargo/bin/ 
@@ -29,7 +34,7 @@ jobs:
 
       - name: layout --list-targets
         env:
-          repos: Starry-OS/Starry
+          repos: seL4/rust-sel4
         run: |
           mkdir ~/check
           gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json -D ~/check
