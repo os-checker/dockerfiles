@@ -40,8 +40,5 @@ jobs:
           gh release download -R os-checker/database ${{ env.TAG_CACHE_REPOS_DEFAULT }} -p repos-default.json -D ~/check
           cp assets/repos-ui.json ~/check/
           cd ~/check
-          os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }}
-          tree -L 2
-
-          os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }} --base-dir /tmp
-          tree -L 2 /tmp
+          os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }} --base-dir /tmp/repos
+          tree -L 2 /tmp/repos
