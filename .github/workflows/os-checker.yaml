@@ -6,7 +6,7 @@ env:
   CARGO_TERM_COLOR: always
   # gh cli needs this token
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-   # cache.redb tag in database release
+  # cache.redb tag in database release
   TAG_CACHE: cache-v11.redb
   # repos-default.json tag in database release
   TAG_CACHE_REPOS_DEFAULT: cache-v8.redb
@@ -41,3 +41,7 @@ jobs:
           cp assets/repos-ui.json ~/check/
           cd ~/check
           os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }}
+          tree -L 2
+
+          os-checker layout --config repos-default.json --config repos-ui.json --list-targets ${{ env.repos }} --base-dir /tmp
+          tree -L 2 /tmp
