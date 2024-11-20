@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: install rudra
+        run: |
+          git clone https://github.com/os-checker/Rudra.git
+          cd Rudra
+          git switch master
+          cargo install --path . --locked
+          cargo rudra --help
+
       - name: install mirai
         run: |
           git clone https://github.com/os-checker/MIRAI.git
@@ -34,11 +42,3 @@ jobs:
           git switch all
           cargo install --path .
           cargo lockbud --help
-
-      - name: install rudra
-        run: |
-          git clone https://github.com/os-checker/Rudra.git
-          cd Rudra
-          git switch master
-          cargo install --path .
-          cargo rudra --help
