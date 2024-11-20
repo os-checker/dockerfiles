@@ -30,6 +30,15 @@ jobs:
       - name: install lockbud
         run: |
           git clone https://github.com/os-checker/lockbud.git
+          cd lockbud
           git switch all
           cargo install --path .
           cargo lockbud --help
+
+      - name: install rudra
+        run: |
+          git clone https://github.com/os-checker/Rudra.git
+          cd Rudra
+          git switch master
+          cargo install --path .
+          cargo rudra --help
