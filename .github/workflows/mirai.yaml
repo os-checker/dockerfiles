@@ -27,3 +27,9 @@ jobs:
           cargo install --path .
           cargo rap --help
 
+      - name: install lockbud
+        run: |
+          git clone https://github.com/os-checker/lockbud.git
+          git switch all
+          cargo install --path .
+          cargo lockbud --help
