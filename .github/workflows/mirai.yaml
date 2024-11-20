@@ -1,0 +1,21 @@
+name: MIRAI
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/MIRAI
+          ref: main
+
+      - name: install mirai
+        run: |
+          cargo install checker --no-default-features -F z3
+          cargo mirai --help
+
