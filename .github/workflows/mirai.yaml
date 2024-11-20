@@ -1,4 +1,4 @@
-name: MIRAI
+name: Install Checkers
 
 on: [push]
 
@@ -9,13 +9,19 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: os-checker/MIRAI
-          ref: main
 
       - name: install mirai
         run: |
+          git clone https://github.com/os-checker/MIRAI.git
+          git switch main
           cargo install --path checker --no-default-features -F z3,z3-sys
           cargo mirai --help
+
+      - name: install rap
+        run: |
+          git clone https://github.com/os-checker/RAP.git
+          git switch main
+          cd rap
+          cargo install --path .
+          cargo rap --help
 
