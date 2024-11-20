@@ -16,6 +16,6 @@ jobs:
 
       - name: install mirai
         run: |
-          cargo install --path checker --no-default-features -F z3
+          cargo install --path checker --no-default-features -F z3,z3-sys
           cargo mirai --help
 
