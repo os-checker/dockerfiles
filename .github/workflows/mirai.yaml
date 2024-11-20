@@ -13,6 +13,7 @@ jobs:
       - name: install mirai
         run: |
           git clone https://github.com/os-checker/MIRAI.git
+          cd MIRAI
           git switch main
           cargo install --path checker --no-default-features -F z3,z3-sys
           cargo mirai --help
@@ -20,6 +21,7 @@ jobs:
       - name: install rap
         run: |
           git clone https://github.com/os-checker/RAP.git
+          cd RAP
           git switch main
           cd rap
           cargo install --path .
