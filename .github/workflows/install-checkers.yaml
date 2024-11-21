@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: install rudra
+      - name: Install Rudra
         run: |
           git clone https://github.com/os-checker/Rudra.git
           cd Rudra
@@ -18,7 +18,7 @@ jobs:
           cargo install --path . --locked
           cargo rudra --help
 
-      - name: install mirai
+      - name: Install Mirai
         run: |
           git clone https://github.com/os-checker/MIRAI.git
           cd MIRAI
@@ -26,7 +26,7 @@ jobs:
           cargo install --path checker --no-default-features -F z3,z3-sys
           cargo mirai --help
 
-      - name: install rap
+      - name: Install Rap
         run: |
           git clone https://github.com/os-checker/RAP.git
           cd RAP
@@ -35,7 +35,7 @@ jobs:
           cargo install --path .
           cargo rap --help
 
-      - name: install lockbud
+      - name: Install Lockbud
         run: |
           git clone https://github.com/os-checker/lockbud.git
           cd lockbud
