@@ -36,7 +36,7 @@ jobs:
       - name: Run Docker
         run: |
           docker load --input ${{ env.IMAGE_TAR }}
-          docker run -v "$PWD":/tmp/_pwd_ -v /check:/check --env-file os-checker.env ${{ env.IMAGE }} /tmp/_pwd_/run.sh
+          docker run -v "$PWD":/tmp/_pwd_ -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /tmp/_pwd_/run.sh
 
       - name: View /check dir
         run: tree /check
