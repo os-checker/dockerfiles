@@ -8,7 +8,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
 
       - name: Install Rudra
@@ -24,7 +24,7 @@ jobs:
           git clone https://github.com/os-checker/MIRAI.git
           cd MIRAI
           git switch main
-          cargo install --path checker --no-default-features -F z3,z3-sys
+          cargo install --path checker --no-default-features -F z3,z3-sys --locked
           cargo mirai --help
 
       - name: Install Rap
