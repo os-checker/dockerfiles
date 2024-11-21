@@ -1,4 +1,4 @@
-name: os-checker Docker
+name: Pull & Run os-checker docker
 
 on: [push]
 
