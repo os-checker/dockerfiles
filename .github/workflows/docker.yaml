@@ -1,0 +1,12 @@
+name: Docker
+
+on: [push]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+
+      - name: List local images
+        run: docker images --all
