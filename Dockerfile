@@ -14,4 +14,4 @@ COPY os-checker.sh /check/os-checker.sh
 WORKDIR /check
 
 ENTRYPOINT ["bash", "-l", "-c"]
-CMD ["./run.sh"]
+# CMD ["./run.sh"]
