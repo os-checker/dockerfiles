@@ -1,0 +1,23 @@
+name: Install Checkers via cargo binstall
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Install cargo-binstall
+        run: curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+      - name: Install cargo-audit
+        run: cargo binstall -y cargo-audit && cargo audit --version
+
+      - name: Install cargo-outdated
+        run: cargo binstall -y cargo-outdated && cargo outdated --version
+
+      - name: Install cargo-geiger
+        run: cargo binstall -y cargo-geiger && cargo geiger --version
