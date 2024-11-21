@@ -21,3 +21,5 @@ jobs:
       - name: Run os-checker docker
         run: docker run -v "$PWD":/tmp/_pwd_ --env-file os-checker.env ${{ env.IMAGE }} /tmp/_pwd_/run.sh
 
+      - name: View /check dir
+        run: tree /check
