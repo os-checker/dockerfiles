@@ -31,3 +31,15 @@ cd /tmp/lockbud
 git switch all
 cargo install --path .
 cargo lockbud --help
+
+# Install cargo-binstall
+curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+# Install cargo-audit
+cargo binstall --force -y cargo-audit && cargo audit --version
+
+# Install cargo-outdated
+cargo binstall --force -y cargo-outdated && cargo outdated --version
+
+# Install cargo-geiger
+cargo binstall --force -y cargo-geiger && cargo geiger --version
