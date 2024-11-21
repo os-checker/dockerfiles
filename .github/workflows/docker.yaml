@@ -10,3 +10,9 @@ jobs:
 
       - name: List local images
         run: docker images --all
+
+      - name: Build Docker
+        run: docker Build -t os-checker .
+
+      - name: Run Docker
+        run: docker run os-checker
