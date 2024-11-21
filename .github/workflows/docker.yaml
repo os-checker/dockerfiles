@@ -9,9 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: List local images
-        run: docker images --all && df -alh
-
       - name: Build Docker
         run: docker build -t os-checker .
 
