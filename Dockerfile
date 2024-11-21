@@ -12,4 +12,5 @@ COPY os-checker.sh /check/os-checker.sh
 
 WORKDIR /check
 
+ENTRYPOINT ["bash", "-l", "-c"]
 CMD ["os-checker.sh"]
