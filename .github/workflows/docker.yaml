@@ -13,7 +13,7 @@ jobs:
         run: docker build -t os-checker .
 
       - name: Run Docker
-        run: docker run --env-file os-checker.env os-checker ./run.sh
+        run: docker run -v "$PWD":/tmp/_pwd_ --env-file os-checker.env os-checker /tmp/_pwd_/run.sh
 
       - name: List local images
         run: docker images --all && df -alh
