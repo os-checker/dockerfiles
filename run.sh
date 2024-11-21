@@ -28,8 +28,9 @@ cd /check
 wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/Makefile
 wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/assets/repos-ui.json
 gh release download -R os-checker/database cache-v8.redb -p repos-default.json
-wget https://github.com/os-checker/os-checker/raw/refs/heads/main/assets/repos.json
+# wget https://github.com/os-checker/os-checker/raw/refs/heads/main/assets/repos.json
+echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
-export CONFIGS="repos-default.json repos-ui.json"
+# export CONFIGS="repos-default.json repos-ui.json"
 export CONFIGS="repos.json"
 make run
