@@ -19,3 +19,7 @@ os-checker --help
 which os-checker-database
 which os-checker-plugin-cargo
 which os-checker-plugin-github-api
+
+ls -alh /os_checker
+
+mv /os_checker/dist /check/

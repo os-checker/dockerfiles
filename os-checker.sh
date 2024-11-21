@@ -1,4 +1,4 @@
-export INSTALL=/tmp/install
+export INSTALL=/os_checker/install
 
 mkdir $INSTALL
 
@@ -55,6 +55,11 @@ mkdir $CARGO_TARGET_DIR
 cargo install --git https://github.com/os-checker/os-checker.git os-checker os-checker-database
 cargo install --git https://github.com/os-checker/plugin-github-api.git
 cargo install --git https://github.com/os-checker/plugin-cargo.git
+
+# Install web ui
+git clone https://github.com/os-checker/os-checker.github.io.git $INSTALL/webui
+cd $INSTALL/webui/os-checks
+npm install && npm run generate && cp -LR dist /os_checker/
 
 # Remove $INSTALL dir since we don't need them and the disk space needs to reduce
 rm $INSTALL -rf

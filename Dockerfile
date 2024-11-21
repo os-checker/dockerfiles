@@ -8,10 +8,10 @@ RUN apt update && \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y && \
   echo "export CARGO_TERM_COLOR=always" >> ~/.bashrc
 
-COPY os-checker.sh /check/os-checker.sh
-RUN bash -l -c /check/os-checker.sh
+COPY os-checker.sh /os_checker/os-checker.sh
+RUN bash -l -c /os_checker/os-checker.sh
 
-WORKDIR /check
+WORKDIR /os_checker
 
 ENTRYPOINT ["bash", "-l", "-c"]
 # CMD ["./run.sh"]
