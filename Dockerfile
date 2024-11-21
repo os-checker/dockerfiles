@@ -9,7 +9,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --defau
   echo "export CARGO_TERM_COLOR=always" >> ~/.bashrc
 
 COPY os-checker.sh /check/os-checker.sh
-# RUN /check/os-checker.sh
+RUN /check/os-checker.sh
 
 WORKDIR /check
 
