@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Pull os-checker docker
-        run: docker pull ${{ env.IMAge }}
+        run: docker pull ${{ env.IMAGE }}
 
       - name: Run os-checker docker
         run: |
