@@ -1,6 +1,8 @@
 # install nightly rust
 rustup toolchain install $OS_CHECKER_RUST_TOOLCHAIN --allow-downgrade --profile minimal --component clippy,rustfmt
 
+rustup default $OS_CHECKER_RUST_TOOLCHAIN
+
 rustc -vV
 
 cargo +nightly-2021-10-20 rudra --help
