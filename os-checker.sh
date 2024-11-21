@@ -32,11 +32,9 @@ cargo install --path .
 cargo lockbud --help
 
 cd /check
-# Remove $INSTALL dir since we don't need them and the disk space needs to reduce
-rm $INSTALL -rf
 
 # Temporarily set rustup toolchain to make cargo commands work
-rustup default nightly-2024-10-11
+rustup default nightly-2024-10-12
 
 # Install cargo-binstall
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
@@ -49,3 +47,6 @@ cargo binstall --force -y cargo-outdated && cargo outdated --version
 
 # Install cargo-geiger
 cargo binstall --force -y cargo-geiger && cargo geiger --version
+
+# Remove $INSTALL dir since we don't need them and the disk space needs to reduce
+rm $INSTALL -rf
