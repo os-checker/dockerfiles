@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     if: true
     steps:
+      - uses: actions/checkout@v4
 
       - name: List local images
         run: docker images --all
