@@ -3,6 +3,8 @@ rustup toolchain install $OS_CHECKER_RUST_TOOLCHAIN --allow-downgrade --profile 
 
 rustup default $OS_CHECKER_RUST_TOOLCHAIN
 
+rustup show
+
 rustc -vV
 
 cargo +nightly-2021-10-20 rudra --help
