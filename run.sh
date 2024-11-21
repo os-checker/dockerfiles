@@ -14,3 +14,8 @@ cargo +nightly-2024-10-12 rap --help
 cargo audit --version
 cargo outdated --version
 cargo geiger --version
+
+os-checker --help
+which os-checker-database
+which os-checker-plugin-cargo
+which os-checker-plugin-github-api

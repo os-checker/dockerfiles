@@ -48,5 +48,13 @@ cargo binstall --force -y cargo-outdated && cargo outdated --version
 # Install cargo-geiger
 cargo binstall --force -y cargo-geiger && cargo geiger --version
 
+# Install os-checker related
+export CARGO_TARGET_DIR=$INSTALL/target
+mkdir $CARGO_TARGET_DIR
+
+cargo install --git https://github.com/os-checker/os-checker.git os-checker os-checker-database
+cargo install --git https://github.com/os-checker/plugin-github-api.git
+cargo install --git https://github.com/os-checker/plugin-cargo.git
+
 # Remove $INSTALL dir since we don't need them and the disk space needs to reduce
 rm $INSTALL -rf
