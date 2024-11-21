@@ -8,6 +8,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
+    if: false
     steps:
 
       - name: Install Rudra
