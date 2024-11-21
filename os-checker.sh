@@ -1,8 +1,3 @@
-# install nightly rust
-rustup toolchain install $OS_CHECKER_RUST_TOOLCHAIN --allow-downgrade --profile minimal --component clippy,rustfmt
-
-rustc -vV
-
 # Install Rudra
 git clone https://github.com/os-checker/Rudra.git /tmp/rudra
 cd /tmp/rudra
