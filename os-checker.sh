@@ -31,6 +31,7 @@ git switch all
 cargo install --path .
 cargo lockbud --help
 
+cd /check
 # Remove $INSTALL dir since we don't need them and the disk space needs to reduce
 rm $INSTALL -rf
 
