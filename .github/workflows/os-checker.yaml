@@ -15,7 +15,9 @@ jobs:
       - name: Pull os-checker docker
         run: docker pull ${{ env.IMAGE }}
 
+      - name: List images
+        run: docker images --all && df -alh
+
       - name: Run os-checker docker
-        run: |
-          docker run -v "$PWD":/tmp/_pwd_ --env-file os-checker.env os-checker /tmp/_pwd_/run.sh
+        run: docker run -v "$PWD":/tmp/_pwd_ --env-file os-checker.env ${{ env.IMAGE }} /tmp/_pwd_/run.sh
 
