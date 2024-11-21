@@ -1,0 +1,21 @@
+name: os-checker Docker
+
+on: [push]
+
+env:
+  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/os-checker:latest
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull os-checker docker
+        run: docker pull ${{ env.IMAge }}
+
+      - name: Run os-checker docker
+        run: |
+          docker run -v "$PWD":/tmp/_pwd_ --env-file os-checker.env os-checker /tmp/_pwd_/run.sh
+
