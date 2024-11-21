@@ -39,7 +39,7 @@ jobs:
           docker run -v "$PWD":/tmp/_pwd_ -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /tmp/_pwd_/run.sh
 
       - name: View /check dir
-        run: tree /check
+        run: tree -h /check
 
       - name: List local images
         run: docker images --all && df -alh
