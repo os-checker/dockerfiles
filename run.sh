@@ -23,3 +23,13 @@ which os-checker-plugin-github-api
 ls -alh /os_checker
 
 mv /os_checker/dist /check/
+
+cd /check
+wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/Makefile
+wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/assets/repos-ui.json
+gh release download -R os-checker/database cache-v8.redb -p repos-default.json
+wget https://github.com/os-checker/os-checker/raw/refs/heads/main/assets/repos.json
+
+export CONFIGS="repos-default.json repos-ui.json"
+export CONFIGS="repos.json"
+make run
