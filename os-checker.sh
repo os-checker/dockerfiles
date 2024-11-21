@@ -1,4 +1,4 @@
 # install nightly rust
-rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy,rustfmt
+rustup toolchain install $OS_CHECKER_RUST_TOOLCHAIN --allow-downgrade --profile minimal --component clippy,rustfmt
 
 rustc -vV
