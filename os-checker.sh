@@ -1,31 +1,38 @@
+export INSTALL=/tmp/install
+
+mkdir $INSTALL
+
 # Install Rudra
-git clone https://github.com/os-checker/Rudra.git /tmp/rudra
-cd /tmp/rudra
+git clone https://github.com/os-checker/Rudra.git $INSTALL/rudra
+cd $INSTALL/rudra
 git switch master
 cargo install --path . --locked
 cargo rudra --help
 
 # Install Mirai
-git clone https://github.com/os-checker/MIRAI.git /tmp/mirai
-cd /tmp/mirai
+git clone https://github.com/os-checker/MIRAI.git $INSTALL/mirai
+cd $INSTALL/mirai
 git switch main
 cargo install --path checker --no-default-features -F z3,z3-sys --locked
 cargo mirai --help
 
 # Install Rap
-git clone https://github.com/os-checker/RAP.git /tmp/rap
-cd /tmp/rap
+git clone https://github.com/os-checker/RAP.git $INSTALL/rap
+cd $INSTALL/rap
 git switch main
 cd rap
 cargo install --path .
 cargo rap --help
 
 # Install Lockbud
-git clone https://github.com/os-checker/lockbud.git /tmp/lockbud
-cd /tmp/lockbud
+git clone https://github.com/os-checker/lockbud.git $INSTALL/lockbud
+cd $INSTALL/lockbud
 git switch all
 cargo install --path .
 cargo lockbud --help
+
+# Remove $INSTALL dir since we don't need them and the disk space needs to reduce
+rm $INSTALL -rf
 
 # Install cargo-binstall
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
