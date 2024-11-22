@@ -49,12 +49,15 @@ cargo binstall --force -y cargo-outdated && cargo outdated --version
 cargo binstall --force -y cargo-geiger && cargo geiger --version
 
 # Install os-checker related
+
+# Shared folder for cargo install. The folder will be deleted in the end.
 export CARGO_TARGET_DIR=$INSTALL/target
 mkdir $CARGO_TARGET_DIR
 
 cargo install --git https://github.com/os-checker/os-checker.git os-checker os-checker-database
 cargo install --git https://github.com/os-checker/plugin-github-api.git
 cargo install --git https://github.com/os-checker/plugin-cargo.git
+cargo install --git https://github.com/os-checker/docs.git
 
 # Install web ui
 git clone https://github.com/os-checker/os-checker.github.io.git $INSTALL/webui
