@@ -23,7 +23,7 @@ jobs:
       - name: View and Move to ~/.cargo/bin/
         run: |
           ls -alh checkers
-          rm checkers/* ~/.cargo/bin/
+          mv checkers/* ~/.cargo/bin/
 
       - name: Test usability
         run: |
