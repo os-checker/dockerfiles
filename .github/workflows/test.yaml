@@ -1,0 +1,22 @@
+name: Test
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+
+      - name: Download checkers.tar.xz
+        run: gh release download --clobber -R os-checker/database precompiled-checkers checkers.tar.xz
+
+      - name: Extract checkers.tar.xz
+        run: tar -xvJf checkers.tar.xz
+
+      - name: View
+        run: ls -alh
+
