@@ -12,7 +12,7 @@ jobs:
     steps:
 
       - name: Download checkers.tar.xz
-        run: gh release download --clobber -R os-checker/database precompiled-checkers checkers.tar.xz
+        run: gh release download --clobber -R os-checker/database precompiled-checkers -p checkers.tar.xz
 
       - name: Extract checkers.tar.xz
         run: tar -xvJf checkers.tar.xz
