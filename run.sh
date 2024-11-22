@@ -17,6 +17,7 @@ cargo geiger --version
 
 os-checker --help
 which os-checker-database
+which os-checker-plugin-docs
 which os-checker-plugin-cargo
 which os-checker-plugin-github-api
 
