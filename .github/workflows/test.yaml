@@ -16,8 +16,30 @@ jobs:
         run: gh release download --clobber -R os-checker/database precompiled-checkers -p checkers.tar.xz
 
       - name: Extract checkers.tar.xz
-        run: tar -xvJf checkers.tar.xz
+        run: |
+          mkdir checkers
+          tar -xvJf checkers.tar.xz -C checkers
 
-      - name: View
-        run: ls -alh
+      - name: View and Move to ~/.cargo/bin/
+        run: |
+          ls -alh checkers
+          rm checkers/* ~/.cargo/bin/
+
+      - name: Test usability
+        run: |
+          cargo audit --version
+          cargo outdated --version
+          cargo geiger --version
+
+      - name: Test rudra
+        run: rustup default nightly-2021-10-21 && cargo rudra --help
+
+      - name: Test mirai
+        run: rustup default nightly-2024-02-05 && cargo mirai --help
+
+      - name: Test rap
+        run: rustup default nightly-2024-10-12 && cargo lockbud --help
+
+      - name: Test lockbud
+        run: rustup default nightly-2024-10-05 && cargo rap --help
 
