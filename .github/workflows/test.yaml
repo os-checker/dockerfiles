@@ -37,9 +37,9 @@ jobs:
       - name: Test mirai
         run: rustup default nightly-2024-02-05 && cargo mirai --help
 
-      - name: Test rap
-        run: rustup default nightly-2024-10-12 && cargo lockbud --help
-
       - name: Test lockbud
-        run: rustup default nightly-2024-10-05 && cargo rap --help
+        run: rustup default nightly-2024-10-05 && cargo lockbud --help
+
+      - name: Test rap
+        run: rustup default nightly-2024-10-12 && cargo rap --help
 
