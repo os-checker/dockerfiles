@@ -3,12 +3,14 @@ name: Install Checkers
 on: [push]
 
 env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
   CARGO_TERM_COLOR: always
+  XZ_OPT: -e9
 
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
 
       - name: Install Rudra
@@ -43,3 +45,22 @@ jobs:
           git switch all
           cargo install --path .
           cargo lockbud --help
+
+      - name: Install cargo-binstall
+        run: curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+      - name: Install cargo-audit
+        run: cargo binstall --force -y cargo-audit && cargo audit --version
+
+      - name: Install cargo-outdated
+        run: cargo binstall --force -y cargo-outdated && cargo outdated --version
+
+      - name: Install cargo-geiger
+        run: cargo binstall --force -y cargo-geiger && cargo geiger --version
+
+      - name: Upload Precompiled Checkers to database
+        run: |
+          cd ~/.cargo/bin/
+          ls -alh
+          tar -cJf checkers.tar.xz rap cargo-rap lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger
+          gh release upload --clobber -R os-checker/database precompiled-checkers checkers.tar.xz
