@@ -21,15 +21,20 @@ cargo geiger --version
 export CARGO_TARGET_DIR=$INSTALL/target
 mkdir -p $CARGO_TARGET_DIR
 
+echo "install os-checker & os-checker-database"
 cargo install --git https://github.com/os-checker/os-checker.git os-checker os-checker-database 2>/dev/null
+echo "install os-checker-plugin-github-api"
 cargo install --git https://github.com/os-checker/plugin-github-api.git 2>/dev/null
+echo "install os-checker-plugin-cargo"
 cargo install --git https://github.com/os-checker/plugin-cargo.git 2>/dev/null
+echo "install os-checker-plugin-docs"
 cargo install --git https://github.com/os-checker/docs.git 2>/dev/null
 
 # Install web ui
 git clone https://github.com/os-checker/os-checker.github.io.git $INSTALL/webui
 cd $INSTALL/webui/os-checks
-npm install 2>/dev/null && npm run generate 2>/dev/null && cp -LR dist /os_checker/
+echo "build webui"
+npm install 2>/dev/null && npm run generate 2>/dev/null 1>/dev/null && cp -LR dist /os_checker/
 
 #Remove $INSTALL dir since we don't need them and the disk space needs to reduce
 rm $INSTALL -rf
@@ -56,21 +61,19 @@ echo '{"os-checker/os-checker-test-suite":{}, "os-checker/os-checker":{}}' >repo
 # export OS_CHECKER_CONFIGS="repos-default.json repos-ui.json"
 export OS_CHECKER_CONFIGS="repos.json"
 
-# # Run checker
-# os-checker db --start cache.redb
-# make run
-# os-checker db --done cache.redb
-#
-# # Generate JSON results
-# os-checker-database
+# Run checker
+os-checker db --start cache.redb
+make run
+os-checker db --done cache.redb
+
+# Generate JSON results
+os-checker-database
 
 # Generate api info
 os-checker-plugin-github-api
-mv tmp github-api
 
 # Generate cargo info
 os-checker-plugin-cargo
-mv tmp cargo
 
 # Generate rustdocs
 os-checker-plugin-docs
