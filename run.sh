@@ -65,7 +65,7 @@ export OS_CHECKER_CONFIGS="repos.json"
 
 # Run checker
 os-checker db --start cache.redb
-make run
+PUSH=true make run
 os-checker db --done cache.redb
 
 # Generate JSON results
