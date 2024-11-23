@@ -21,17 +21,15 @@ cargo geiger --version
 export CARGO_TARGET_DIR=$INSTALL/target
 mkdir -p $CARGO_TARGET_DIR
 
-export $REDIR="1>/dev/null"
-
-cargo install --git https://github.com/os-checker/os-checker.git os-checker os-checker-database $REDIR
-cargo install --git https://github.com/os-checker/plugin-github-api.git $REDIR
-cargo install --git https://github.com/os-checker/plugin-cargo.git $REDIR
-cargo install --git https://github.com/os-checker/docs.git $REDIR
+cargo install --git https://github.com/os-checker/os-checker.git os-checker os-checker-database 2>/dev/null
+cargo install --git https://github.com/os-checker/plugin-github-api.git 2>/dev/null
+cargo install --git https://github.com/os-checker/plugin-cargo.git 2>/dev/null
+cargo install --git https://github.com/os-checker/docs.git 2>/dev/null
 
 # Install web ui
 git clone https://github.com/os-checker/os-checker.github.io.git $INSTALL/webui
 cd $INSTALL/webui/os-checks
-npm install $REDIR && npm run generate $REDIR && cp -LR dist /os_checker/
+npm install 2>/dev/null && npm run generate 2>/dev/null && cp -LR dist /os_checker/
 
 #Remove $INSTALL dir since we don't need them and the disk space needs to reduce
 rm $INSTALL -rf
