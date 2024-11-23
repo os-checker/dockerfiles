@@ -33,7 +33,7 @@ npm install 2>/dev/null && npm run generate 2>/dev/null && cp -LR dist /os_check
 
 #Remove $INSTALL dir since we don't need them and the disk space needs to reduce
 rm $INSTALL -rf
-unset INSTALL
+unset CARGO_TARGET_DIR
 
 os-checker --help
 which os-checker-database
@@ -56,13 +56,13 @@ echo '{"os-checker/os-checker-test-suite":{}, "os-checker/os-checker":{}}' >repo
 # export OS_CHECKER_CONFIGS="repos-default.json repos-ui.json"
 export OS_CHECKER_CONFIGS="repos.json"
 
-# Run checker
-os-checker db --start cache.redb
-make run
-os-checker db --done cache.redb
-
-# Generate JSON results
-os-checker-database
+# # Run checker
+# os-checker db --start cache.redb
+# make run
+# os-checker db --done cache.redb
+#
+# # Generate JSON results
+# os-checker-database
 
 # Generate api info
 os-checker-plugin-github-api
