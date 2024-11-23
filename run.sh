@@ -33,6 +33,7 @@ npm install 2>/dev/null && npm run generate 2>/dev/null && cp -LR dist /os_check
 
 #Remove $INSTALL dir since we don't need them and the disk space needs to reduce
 rm $INSTALL -rf
+unset INSTALL
 
 os-checker --help
 which os-checker-database
