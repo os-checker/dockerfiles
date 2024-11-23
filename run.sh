@@ -80,7 +80,7 @@ os-checker-plugin-cargo
 os-checker-plugin-docs
 
 # deploy -> /check/dist/docs (NOTE: WebUI should not define docs page/route)
-mv deploy dist/docs
+# mv deploy dist/docs
 
 git config --global user.name $GIT_AUTHOR
 git config --global user.email $GIT_EMAIL
@@ -91,6 +91,12 @@ echo "正在 clone" $DATABASE_REPO
 gh repo clone $DATABASE_REPO $DATABASE_REPO
 gh auth setup-git
 echo "成功 clone" $DATABASE_REPO
+
+# clean ui
+rm $DATABASE_REPO/ui -rf
+
+# ui -> $DATABASE_REPO/ui
+mv ui $DATABASE_REPO
 
 # clean old plugin dir
 rm $DATABASE_REPO/plugin -rf
