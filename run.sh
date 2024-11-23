@@ -52,8 +52,8 @@ gh release download -R os-checker/database cache-v8.redb -p repos-default.json
 # wget https://github.com/os-checker/os-checker/raw/refs/heads/main/assets/repos.json
 echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
-# export CONFIGS="repos-default.json repos-ui.json"
-export CONFIGS="repos.json"
+# export OS_CHECKER_CONFIGS="repos-default.json repos-ui.json"
+export OS_CHECKER_CONFIGS="repos.json"
 os-checker db --start cache.redb
 make run
 os-checker db --done cache.redb
