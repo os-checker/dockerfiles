@@ -21,7 +21,7 @@ cargo geiger --version
 export CARGO_TARGET_DIR=$INSTALL/target
 mkdir -p $CARGO_TARGET_DIR
 
-export $REDIR="2 >/dev/null"
+export $REDIR="1>/dev/null"
 
 cargo install --git https://github.com/os-checker/os-checker.git os-checker os-checker-database $REDIR
 cargo install --git https://github.com/os-checker/plugin-github-api.git $REDIR
