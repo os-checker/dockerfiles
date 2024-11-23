@@ -53,7 +53,7 @@ ls -alh /os_checker
 
 cd /check
 git lfs install --skip-smudge # 如果 lfs 下载不了大文件，跳过下载
-wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/Makefile
+# wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/Makefile
 wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/assets/repos-ui.json
 gh release download -R os-checker/database cache-v8.redb -p repos-default.json
 # wget https://github.com/os-checker/os-checker/raw/refs/heads/main/assets/repos.json
@@ -65,7 +65,7 @@ export OS_CHECKER_CONFIGS="repos.json"
 
 # Run checker
 os-checker db --start cache.redb
-PUSH=true make run
+os-checker run --emit batch/single.json --db cache.redb
 os-checker db --done cache.redb
 
 # Generate JSON results
