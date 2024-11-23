@@ -54,6 +54,22 @@ echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
 # export OS_CHECKER_CONFIGS="repos-default.json repos-ui.json"
 export OS_CHECKER_CONFIGS="repos.json"
+
+# Run checker
 os-checker db --start cache.redb
 make run
 os-checker db --done cache.redb
+
+# Generate JSON results
+os-checker-database
+
+# Generate api info
+os-checker-plugin-github-api
+mv tmp github-api
+
+# Generate cargo info
+os-checker-plugin-cargo
+mv tmp cargo
+
+# Generate rustdocs
+os-checker-plugin-docs
