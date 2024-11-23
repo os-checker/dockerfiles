@@ -61,13 +61,13 @@ echo '{"os-checker/os-checker-test-suite":{}, "os-checker/os-checker":{}}' >repo
 # export OS_CHECKER_CONFIGS="repos-default.json repos-ui.json"
 export OS_CHECKER_CONFIGS="repos.json"
 
-# Run checker
-os-checker db --start cache.redb
-make run
-os-checker db --done cache.redb
-
-# Generate JSON results
-os-checker-database
+# # Run checker
+# os-checker db --start cache.redb
+# make run
+# os-checker db --done cache.redb
+#
+# # Generate JSON results
+# os-checker-database
 
 # Generate api info
 os-checker-plugin-github-api
@@ -102,6 +102,7 @@ mv cargo $DATABASE_REPO/plugin/cargo/info
 mv github-api $DATABASE_REPO/plugin
 
 # commit & push changes
+cd $DATABASE_REPO
 echo "update plugin folder for" $DATABASE_REPO
 export branch=$(git branch --show-current)
 

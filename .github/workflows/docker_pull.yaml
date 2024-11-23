@@ -6,7 +6,7 @@ env:
   IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/os-checker:latest
 
 jobs:
-  install:
+  run-check-and-deploy:
     runs-on: ubuntu-latest
     if: true
     steps:
