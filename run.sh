@@ -79,8 +79,10 @@ os-checker-plugin-cargo
 # Generate rustdocs
 os-checker-plugin-docs
 
-# deploy -> /check/dist/docs (NOTE: WebUI should not define docs page/route)
-# mv deploy dist/docs
+# deploy -> /check/dist/docs (WebUI should not define docs page/route)
+# tar: ./docs/os-checker/os-checker-test-suite/.lock: Cannot open: Permission denied
+find deploy -type f -name ".lock" -delete
+mv deploy dist/docs
 
 git config --global user.name $GIT_AUTHOR
 git config --global user.email $GIT_EMAIL
