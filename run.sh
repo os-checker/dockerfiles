@@ -62,10 +62,17 @@ echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 # export OS_CHECKER_CONFIGS="repos-default.json repos-ui.json"
 export OS_CHECKER_CONFIGS="repos.json"
 
+# Download cache.redb
+gh release download -R ${{ env.DATABASE_REPO }} cache -p cache.redb || true
+
 # Run checker
 os-checker db --start cache.redb
 os-checker run --emit batch/single.json --db cache.redb
 os-checker db --done cache.redb
+
+# Upload cache.redb
+gh release create -R ${{ env.DATABASE_REPO }} cache --draft --notes 'Cached checking results in a database file.' || true
+gh release upload -R ${{ env.DATABASE_REPO }} cache --clobber cache.redb
 
 # Generate JSON results
 os-checker-database
