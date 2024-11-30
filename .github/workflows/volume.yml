@@ -17,7 +17,7 @@ jobs:
 
       - run: docker build -t test -f test.dockerfile .
 
-      - run: docker run -v /check:/check test
+      - run: docker run -v /check:/check --env-file os-checker.env test
 
       - run: ls -alh /check
 
