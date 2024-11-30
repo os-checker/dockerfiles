@@ -10,7 +10,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
 
       - name: Install Rudra
@@ -58,9 +58,12 @@ jobs:
       - name: Install cargo-geiger
         run: cargo binstall --force -y cargo-geiger && cargo geiger --version
 
+      - name: Install cargo-semver-checks
+        run: cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
+
       - name: Upload Precompiled Checkers to database
         run: |
           cd ~/.cargo/bin/
           ls -alh
-          tar -cJf checkers.tar.xz rap cargo-rap lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger
+          tar -cJf checkers.tar.xz rap cargo-rap lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks
           gh release upload --clobber -R os-checker/database precompiled-checkers checkers.tar.xz
