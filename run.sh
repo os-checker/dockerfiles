@@ -53,18 +53,17 @@ which os-checker-plugin-github-api
 
 ls -alh /os_checker
 
-mv /os_checker/dist /check/
+mv /os_checker/dist $CHECK_DIR
 
-cd /check
+cd $CHECK_DIR
 git lfs install --skip-smudge # 如果 lfs 下载不了大文件，跳过下载
-wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/assets/repos-ui.json
-gh release download -R os-checker/database cache-v8.redb -p repos-default.json
+# wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/assets/repos-ui.json
+# gh release download -R os-checker/database cache-v8.redb -p repos-default.json
 # wget https://github.com/os-checker/os-checker/raw/refs/heads/main/assets/repos.json
-# echo '{"os-checker/os-checker-test-suite":{}, "os-checker/os-checker":{}}' >repos.json
-echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
+# echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
 # export OS_CHECKER_CONFIGS="repos-default.json repos-ui.json"
-export OS_CHECKER_CONFIGS="repos.json"
+# export OS_CHECKER_CONFIGS="repos.json"
 
 # Download cache.redb
 gh release download -R $DATABASE_REPO cache -p cache.redb || true
@@ -90,7 +89,7 @@ os-checker-plugin-cargo
 # Generate rustdocs
 os-checker-plugin-docs
 
-# deploy -> /check/dist/docs (WebUI should not define docs page/route)
+# deploy -> $CHECK_DIR/dist/docs (WebUI should not define docs page/route)
 # tar: ./docs/os-checker/os-checker-test-suite/.lock: Cannot open: Permission denied
 find deploy -type f -name ".lock" -delete
 mv deploy dist/docs
