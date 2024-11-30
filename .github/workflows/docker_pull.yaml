@@ -12,16 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Prepare config JSONs
+        run: |
+          sudo mkdir /check && cd /check
+          echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
+
       - name: Pull os-checker docker
         run: docker pull ${{ env.IMAGE }}
 
       - name: List images
         run: docker images --all && df -alh
-
-      - name: Prepare config JSONs
-        run: |
-          mkdir /check && cd /check
-          echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
       - name: Run os-checker docker
         run: docker run -v "$PWD":/tmp/_pwd_ -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /tmp/_pwd_/run.sh
