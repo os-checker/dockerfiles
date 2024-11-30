@@ -56,6 +56,7 @@ ls -alh /os_checker
 mv /os_checker/dist $CHECK_DIR
 
 cd $CHECK_DIR
+ls -alh
 git lfs install --skip-smudge # 如果 lfs 下载不了大文件，跳过下载
 # wget https://raw.githubusercontent.com/os-checker/os-checker/refs/heads/main/assets/repos-ui.json
 # gh release download -R os-checker/database cache-v8.redb -p repos-default.json
