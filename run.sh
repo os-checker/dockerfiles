@@ -14,6 +14,7 @@ cargo +nightly-2024-10-12 rap --help
 cargo audit --version
 cargo outdated --version
 cargo geiger --version
+cargo semver-checks --version
 
 # Install os-checker related
 
