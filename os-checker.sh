@@ -51,6 +51,9 @@ cargo binstall --force -y cargo-geiger && cargo geiger --version
 # Install cargo-semver-checks
 cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
 
+# Install cargo-nextest
+cargo binstall --force -y cargo-nextest && cargo nextest --version
+
 # # Install os-checker related
 #
 # # Shared folder for cargo install. The folder will be deleted in the end.
