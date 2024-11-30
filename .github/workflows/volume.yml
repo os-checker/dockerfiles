@@ -14,7 +14,7 @@ jobs:
           sudo mkdir /check && sudo chmod -R 777 /check && cd /check
           echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
-      - run: docker build --help
+      - run: docker build -t test -f ./test.dockerfile
 
-      # - run: docker run -v /check:/check test
+      - run: docker run -v /check:/check test
 
