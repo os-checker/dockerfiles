@@ -14,8 +14,8 @@ jobs:
 
       - name: Prepare config JSONs
         run: |
-          sudo mkdir /check && cd /check
-          sudo echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
+          sudo mkdir /check && sudo chmod -R 777 /check && cd /check
+          echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
       - name: Pull os-checker docker
         run: docker pull ${{ env.IMAGE }}
