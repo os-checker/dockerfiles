@@ -14,9 +14,12 @@ jobs:
 
       - name: Prepare config JSONs
         run: |
+          # github action don't allow create /dir directly, so sudo mkdir and chmod
           sudo mkdir /check && sudo chmod -R 777 /check 
+          # entry point file
           mv run.sh /check
           cd /check
+          # os-checker config JSON file
           echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
       - name: Pull os-checker docker
@@ -26,7 +29,7 @@ jobs:
         run: docker images --all && df -alh
 
       - name: Run os-checker docker
-        run: docker run -v -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /check/run.sh
+        run: docker run -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /check/run.sh
 
       - name: View /check dir
         run: tree -L 4 -h /check
