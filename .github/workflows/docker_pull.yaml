@@ -22,14 +22,14 @@ jobs:
           # os-checker config JSON file
           echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
-      - name: Pull os-checker docker
-        run: docker pull ${{ env.IMAGE }}
-
-      - name: List images
-        run: docker images --all && df -alh
-
+      # - name: Pull os-checker docker
+      #   run: docker pull ${{ env.IMAGE }}
+      #
+      # - name: List images
+      #   run: docker images --all && df -alh
+      #
       - name: Run os-checker docker
-        run: docker run -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /check/run.sh
+        run: docker run -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} zjpzjp/os-checker /check/run.sh
 
       - name: View /check dir
         run: tree -L 4 -h /check
