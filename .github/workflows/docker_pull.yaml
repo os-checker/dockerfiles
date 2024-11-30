@@ -1,4 +1,4 @@
-name: Pull & Run os-checker docker
+name: Pull & Run Docker
 
 on: [push]
 
@@ -8,7 +8,7 @@ env:
 jobs:
   run:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
       - uses: actions/checkout@v4
 
