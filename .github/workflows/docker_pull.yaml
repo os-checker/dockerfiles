@@ -14,7 +14,9 @@ jobs:
 
       - name: Prepare config JSONs
         run: |
-          sudo mkdir /check && sudo chmod -R 777 /check && cd /check
+          sudo mkdir /check && sudo chmod -R 777 /check 
+          mv run.sh /check
+          cd /check
           echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
 
       - name: Pull os-checker docker
@@ -24,7 +26,7 @@ jobs:
         run: docker images --all && df -alh
 
       - name: Run os-checker docker
-        run: docker run -v "$PWD":/tmp/_pwd_ -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /tmp/_pwd_/run.sh
+        run: docker run -v -v /check:/check --env-file os-checker.env -e GH_TOKEN=${{ secrets.GH_TOKEN }} ${{ env.IMAGE }} /check/run.sh
 
       - name: View /check dir
         run: tree -L 4 -h /check
