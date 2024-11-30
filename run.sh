@@ -19,6 +19,7 @@ cargo semver-checks --version
 # Install os-checker related
 
 # Shared folder for cargo install. The folder will be deleted in the end.
+export INSTALL=/os_checker/install
 export CARGO_TARGET_DIR=$INSTALL/target
 mkdir -p $CARGO_TARGET_DIR
 
