@@ -53,7 +53,9 @@ jobs:
         run: cargo binstall --force -y cargo-audit && cargo audit --version
 
       - name: Install cargo-outdated
-        run: cargo binstall --force -y cargo-outdated && cargo outdated --version
+        # run: cargo binstall --force -y cargo-outdated && cargo outdated --version
+        # see: https://github.com/os-checker/os-checker/issues/196#issuecomment-2554681286
+        run: cargo install --git https://github.com/os-checker/cargo-outdated.git --branch os-checker
 
       - name: Install cargo-geiger
         run: cargo binstall --force -y cargo-geiger && cargo geiger --version
