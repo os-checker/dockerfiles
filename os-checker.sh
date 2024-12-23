@@ -34,7 +34,7 @@ cargo lockbud --help
 cd /check
 
 # Temporarily set rustup toolchain to make cargo commands work
-rustup default nightly-2024-10-12
+rustup default nightly-2024-12-19
 
 # Install cargo-binstall
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
@@ -43,7 +43,8 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 cargo binstall --force -y cargo-audit && cargo audit --version
 
 # Install cargo-outdated
-cargo binstall --force -y cargo-outdated && cargo outdated --version
+# cargo binstall --force -y cargo-outdated && cargo outdated --version
+cargo install --git https://github.com/os-checker/cargo-outdated.git --branch os-checker
 
 # Install cargo-geiger
 cargo binstall --force -y cargo-geiger && cargo geiger --version
