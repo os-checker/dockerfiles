@@ -1,0 +1,23 @@
+name: Bisect rustc
+
+on: [push]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/taskctx
+          ref: fix/all-features_riscv32imafc-unknown-none-elf
+
+      - run: cargo install cargo-bisect-rustc
+
+      - run: cargo bisect-rustc --start=2024-12-04 --end=2024-12-31
+
