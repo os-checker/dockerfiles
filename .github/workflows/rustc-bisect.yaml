@@ -19,5 +19,5 @@ jobs:
 
       - run: cargo install cargo-bisect-rustc
 
-      - run: cargo bisect-rustc --start=2024-12-04 --end=2024-12-31
+      - run: cargo bisect-rustc --target riscv32imafc-unknown-none-elf --start=2024-12-04 --end=2024-12-31 -- build --all-features
 
