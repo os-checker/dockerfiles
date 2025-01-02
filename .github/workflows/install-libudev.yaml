@@ -12,4 +12,5 @@ jobs:
     if: true
     steps:
 
-    - run: sudo apt install libudev -y
+    - run: sudo apt search libudev
+    - run: sudo apt install libudev-dev -y
