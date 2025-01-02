@@ -14,3 +14,7 @@ jobs:
 
     - run: sudo apt search libudev
     - run: sudo apt install libudev-dev -y
+    - run: |
+        gh repo clone ZR233/ostool
+        cd ostool
+        cargo c
