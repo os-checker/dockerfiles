@@ -13,6 +13,9 @@ jobs:
     steps:
     # - run: sudo apt search fuse3
     - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
+    - run: |
+        ls -alh /etc/fuse.conf
+        echo user_allow_other >> /etc/fuse.conf
     - uses: actions/checkout@v4
       with:
         repository: yuoo655/ext4libtest
@@ -24,6 +27,5 @@ jobs:
         cargo clippy
     - name: test
       run: |
-        sudo echo user_allow_other >> /etc/fuse.conf
-        sh gen_img.sh
+        sudo sh gen_img.sh
         cargo run ./foo/
