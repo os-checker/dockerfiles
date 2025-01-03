@@ -15,6 +15,7 @@ jobs:
     # - run: sudo apt search fuse3
     - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
     - run: |
+        rustup default nightly
         gh repo clone yuoo655/ext4libtest
         cd ext4libtest
         cargo c
