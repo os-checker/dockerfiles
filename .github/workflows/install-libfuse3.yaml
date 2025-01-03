@@ -11,11 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     if: true
     steps:
-
     # - run: sudo apt search fuse3
     - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
-    - run: |
+    - uses: actions/checkout@v4
+      with:
+        repository: yuoo655/ext4libtest
+    - name: clippy
+      run: |
         rustup default nightly
-        gh repo clone yuoo655/ext4libtest
-        cd ext4libtest
-        cargo c
+        cargo clippy
+    - name: test
+      run: |
+        sh gen_img.sh
+        cargo run ./foo/
