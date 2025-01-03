@@ -16,6 +16,7 @@ jobs:
     - run: |
         ls -alh /etc/fuse.conf
         cat /etc/fuse.conf
+        sudo chmod +777 /etc/fuse.conf
         sudo echo user_allow_other >> /etc/fuse.conf
         cat /etc/fuse.conf
     - uses: actions/checkout@v4
