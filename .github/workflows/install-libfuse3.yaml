@@ -1,0 +1,20 @@
+name: Install libfuse3-dev
+
+on: [push]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+
+    # - run: sudo apt search fuse3
+    - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
+    - run: |
+        gh repo clone yuoo655/ext4libtest
+        cd ext4libtest
+        cargo c
