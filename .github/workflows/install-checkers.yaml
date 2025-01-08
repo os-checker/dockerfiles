@@ -10,7 +10,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
 
       - name: Install Rudra
@@ -65,7 +65,9 @@ jobs:
         run: cargo binstall --force -y cargo-geiger && cargo geiger --version
 
       - name: Install cargo-semver-checks
-        run: cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
+        # run: cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
+        # see https://github.com/obi1kenobi/cargo-semver-checks/issues/1068
+        run: cargo install --git https://github.com/os-checker/cargo-semver-checks.git --branch fix/--target && cargo semver-checks --version
 
       - name: Install cargo-nextest
         run: cargo binstall --force -y cargo-nextest && cargo nextest --version
