@@ -13,6 +13,15 @@ jobs:
     if: true
     steps:
 
+      - name: Install RAPx
+        run: |
+          git clone https://github.com/os-checker/RAPx.git
+          cd RAPx
+          git switch main
+          cd rapx
+          cargo install --path .
+          cargo rapx --help
+
       - name: Install Rudra
         run: |
           git clone https://github.com/os-checker/Rudra.git
@@ -28,15 +37,6 @@ jobs:
           git switch main
           cargo install --path checker --no-default-features -F z3,z3-sys --locked
           cargo mirai --help
-
-      - name: Install Rap
-        run: |
-          git clone https://github.com/os-checker/RAP.git
-          cd RAP
-          git switch main
-          cd rap
-          cargo install --path .
-          cargo rap --help
 
       - name: Install Lockbud
         run: |
@@ -76,5 +76,5 @@ jobs:
         run: |
           cd ~/.cargo/bin/
           ls -alh
-          tar -cJf checkers.tar.xz rap cargo-rap lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest
+          tar -cJf checkers.tar.xz rapx cargo-rapx lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest
           gh release upload --clobber -R os-checker/database precompiled-checkers checkers.tar.xz
