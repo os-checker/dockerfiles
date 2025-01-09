@@ -1,0 +1,24 @@
+name: embassy
+
+on: [push]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+    # - run: sudo apt search fuse3
+    # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
+    # - uses: dtolnay/rust-toolchain@nightly
+    #   with:
+    #     components: clippy
+    - uses: actions/checkout@v4
+      with:
+        repository: embassy-rs/embassy
+
+    - name: test
+      run: cd embassy-stm32 && cargo test -F stm32c011d6
