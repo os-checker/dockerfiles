@@ -1,0 +1,33 @@
+name: semver-checks
+
+on: [push]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+    # - run: sudo apt search fuse3
+    # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
+    - uses: dtolnay/rust-toolchain@nightly
+      # with:
+      #   components: clippy
+
+    - run: rustup -Vv && cargo -Vv
+
+    - uses: actions/checkout@v4
+      with:
+        repository: obi1kenobi/cargo-semver-checks
+
+    - name: install
+      run: cargo install --path . cargo-semver-checks
+
+    - name: test
+      run: |
+        cd && git clone https://github.com/arceos-org/arm_gicv2.git && cd arm_gicv2
+        rustup target add aarch64-unknown-none-softfloat
+        cargo semver-checks --target aarch64-unknown-none-softfloat
