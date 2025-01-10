@@ -9,7 +9,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
     # - run: sudo apt search fuse3
     # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
@@ -30,6 +30,7 @@ jobs:
 
     - name: test
       run: |
-        cd && git clone https://github.com/arceos-org/arm_gicv2.git && cd arm_gicv2
         rustup target add aarch64-unknown-none-softfloat
-        cargo semver-checks --target aarch64-unknown-none-softfloat
+        cd && git clone https://github.com/Starry-OS/Starry-Old.git && cd Starry-Old
+        cd modules/axnet
+        cargo +nightly semver-checks --target aarch64-unknown-none-softfloat
