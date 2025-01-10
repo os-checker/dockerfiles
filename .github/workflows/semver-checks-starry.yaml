@@ -26,7 +26,11 @@ jobs:
         repository: obi1kenobi/cargo-semver-checks
 
     - name: install
-      run: cargo install --path . cargo-semver-checks
+      # run: cargo install --path . cargo-semver-checks
+      run: |
+        gh release download --clobber -R os-checker/database precompiled-checkers -p checkers.tar.xz
+        tar -xvJf checkers.tar.xz -C ~/.cargo/bin/
+        cargo semver-checks --version
 
     - name: test
       run: |
