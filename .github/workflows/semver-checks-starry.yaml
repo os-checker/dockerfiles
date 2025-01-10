@@ -34,7 +34,6 @@ jobs:
 
     - name: test
       run: |
-        rustup target add aarch64-unknown-none-softfloat
-        cd && git clone https://github.com/Starry-OS/Starry-Old.git && cd Starry-Old
-        cd modules/axnet
-        cargo +nightly semver-checks --target aarch64-unknown-none-softfloat
+        rustup target add aarch64-unknown-none
+        cd && gh repo clone arceos-org/allocator && cd allocator
+        cargo +nightly semver-checks --target aarch64-unknown-none
