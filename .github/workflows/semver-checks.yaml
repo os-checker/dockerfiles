@@ -1,4 +1,4 @@
-name: semver-checks
+name: semver-checks Cargo fix
 
 on: [push]
 
@@ -9,7 +9,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
     # - run: sudo apt search fuse3
     # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
