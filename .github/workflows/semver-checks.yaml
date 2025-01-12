@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: true
     strategy:
-      fail-fase: false
+      fail-fast: false
       matrix:
         toolchain: ["nightly-2025-01-01", "nightly-2025-01-12"]
     steps:
