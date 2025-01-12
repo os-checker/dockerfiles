@@ -39,12 +39,15 @@ jobs:
       run: cd ~/arm_gicv2 && cargo check --target aarch64-unknown-none
 
     - name: RUSTFLAGS=-Dwarnings cargo check --target aarch64-unknown-none
+      if: ${{ always() }}
       run: cd ~/arm_gicv2 && RUSTFLAGS=-Dwarnings cargo check --target aarch64-unknown-none
 
     - name: RUSTFLAGS="-Awarnings -Dwarnings" cargo check --target aarch64-unknown-none
+      if: ${{ always() }}
       run: cd ~/arm_gicv2 && RUSTFLAGS="-Awarnings -Dwarnings" cargo check --target aarch64-unknown-none
 
     - name: RUSTFLAGS="-Dwarnings -Awarnings" cargo check --target aarch64-unknown-none
+      if: ${{ always() }}
       run: cd ~/arm_gicv2 && RUSTFLAGS="-Dwarnings -Awarnings" cargo check --target aarch64-unknown-none
 
       # cargo semver-checks --target aarch64-unknown-none
