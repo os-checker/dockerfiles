@@ -23,13 +23,6 @@ jobs:
     - run: rustc -Vv
     - run: cargo -Vv
 
-    # - uses: actions/checkout@v4
-    #   with:
-    #     repository: obi1kenobi/cargo-semver-checks
-
-    # - name: install
-    #   run: cargo install --path . cargo-semver-checks
-
     - name: arm_gicv2
       run: |
         cd && git clone https://github.com/arceos-org/arm_gicv2.git && cd arm_gicv2
@@ -50,4 +43,10 @@ jobs:
       if: ${{ always() }}
       run: cd ~/arm_gicv2 && RUSTFLAGS="-Dwarnings -Awarnings" cargo check --target aarch64-unknown-none
 
-      # cargo semver-checks --target aarch64-unknown-none
+    - name: install cargo-semver-checks
+      if: ${{ always() }}
+      run: cargo install --git https://github.com/obi1kenobi/cargo-semver-checks.git cargo-semver-checks
+
+    - name: cargo semver-checks --target aarch64-unknown-none
+      if: ${{ always() }}
+      run: cd ~/arm_gicv2 && cargo semver-checks --target aarch64-unknown-none
