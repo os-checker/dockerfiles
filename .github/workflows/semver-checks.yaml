@@ -10,26 +10,32 @@ jobs:
   install:
     runs-on: ubuntu-latest
     if: true
+    strategy:
+      matrix:
+        toolchain: ["nightly-2025-01-01", "nightly-2025-01-12"]
     steps:
-    # - run: sudo apt search fuse3
-    # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
-    - uses: dtolnay/rust-toolchain@nightly
-      # with:
-      #   components: clippy
+    - uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: ${{ matrix.toolchain }}
 
     - run: rustup -Vv
     - run: rustc -Vv
     - run: cargo -Vv
 
-    - uses: actions/checkout@v4
-      with:
-        repository: obi1kenobi/cargo-semver-checks
+    # - uses: actions/checkout@v4
+    #   with:
+    #     repository: obi1kenobi/cargo-semver-checks
 
-    - name: install
-      run: cargo install --path . cargo-semver-checks
+    # - name: install
+    #   run: cargo install --path . cargo-semver-checks
 
-    - name: test
+    - name: arm_gicv2
       run: |
         cd && git clone https://github.com/arceos-org/arm_gicv2.git && cd arm_gicv2
-        rustup target add aarch64-unknown-none-softfloat
-        cargo semver-checks --target aarch64-unknown-none-softfloat
+        rustup target add aarch64-unknown-none
+    - name: cargo check --target aarch64-unknown-none
+      run: cd ~/arm_gicv2 && cargo check --target aarch64-unknown-none
+    - name: RUSTFLAGS=-Dwarnings cargo check --target aarch64-unknown-none
+      run: cd ~/arm_gicv2 && RUSTFLAGS=-Dwarnings cargo check --target aarch64-unknown-none
+
+      # cargo semver-checks --target aarch64-unknown-none
