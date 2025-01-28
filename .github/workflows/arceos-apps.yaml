@@ -1,0 +1,31 @@
+name: arceos-apps
+
+on: [push]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: false
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ["aarch64-unknown-none", "riscv64gc-unknown-none-elf", "x86_64-unknown-none"]
+    steps:
+    - uses: dtolnay/rust-toolchain@nightly
+    - uses: taiki-e/install-action@cargo-hack
+
+    - run: rustup -Vv
+    - run: rustc -Vv
+    - run: cargo -Vv
+
+    - uses: actions/checkout@v4
+      with:
+        repository: arceos-org/arceos-apps
+
+    - name: bwbench cargo c --target riscv64gc-unknown-none-elf
+      working-directory: rust/net/bwbench
+      run: cargo c --target ${{ matrix.target }}
