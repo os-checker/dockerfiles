@@ -31,7 +31,7 @@ jobs:
 
     - name: display cargo build
       working-directory: rust/display
-      run: cargo build --target ${{ matrix.targets }}
+      run: cargo build --target ${{ matrix.targets }} --features axstd
 
     - name: bwbench cargo build
       working-directory: rust/net/bwbench
