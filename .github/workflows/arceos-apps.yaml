@@ -9,7 +9,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     strategy:
       fail-fast: false
       matrix:
