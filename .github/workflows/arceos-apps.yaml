@@ -29,6 +29,6 @@ jobs:
       with:
         repository: arceos-org/arceos-apps
 
-    - name: bwbench cargo c --target riscv64gc-unknown-none-elf
+    - name: bwbench cargo build --target riscv64gc-unknown-none-elf
       working-directory: rust/net/bwbench
-      run: cargo c --target ${{ matrix.targets }}
+      run: cargo build --target ${{ matrix.targets }}
