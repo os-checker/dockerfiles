@@ -5,6 +5,7 @@ on: [push]
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
   CARGO_TERM_COLOR: always
+  TOOLCHAIN: nightly-2025-01-26
 
 jobs:
   test:
@@ -15,7 +16,7 @@ jobs:
     # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
     - uses: dtolnay/rust-toolchain@master
       with:
-        toolchain: nightly-2025-01-26
+        toolchain: ${{ env.TOOLCHAIN }}
         targets: aarch64-unknown-none,x86_64-unknown-linux-gnu
       #   components: clippy
 
@@ -37,5 +38,5 @@ jobs:
     - name: test
       run: |
         cd && gh repo clone Azure-stars/kernel_elf_parser && cd kernel_elf_parser
-        cargo +nightly semver-checks --target aarch64-unknown-none
-        cargo +nightly semver-checks --target x86_64-unknown-linux-gnu
+        cargo +${{ env.TOOLCHAIN }} semver-checks --target aarch64-unknown-none
+        cargo +${{ env.TOOLCHAIN }} semver-checks --target x86_64-unknown-linux-gnu
