@@ -16,6 +16,7 @@ jobs:
     - uses: dtolnay/rust-toolchain@master
       with:
         toolchain: nightly-2025-01-26
+        targets: aarch64-unknown-none,x86_64-unknown-linux-gnu
       #   components: clippy
 
     - run: rustup -Vv
@@ -35,7 +36,6 @@ jobs:
 
     - name: test
       run: |
-        rustup target add aarch64-unknown-none
         cd && gh repo clone Azure-stars/kernel_elf_parser && cd kernel_elf_parser
         cargo +nightly semver-checks --target aarch64-unknown-none
         cargo +nightly semver-checks --target x86_64-unknown-linux-gnu
