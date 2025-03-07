@@ -1,20 +1,23 @@
-name: semver-checks fork
+name: Test semver-checks fork
 
 on: [push]
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
   CARGO_TERM_COLOR: always
+  TOOLCHAIN: nightly-2025-01-26
 
 jobs:
-  install:
+  test:
     runs-on: ubuntu-latest
     if: false
     steps:
     # - run: sudo apt search fuse3
     # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
-    - uses: dtolnay/rust-toolchain@nightly
-      # with:
+    - uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: ${{ env.TOOLCHAIN }}
+        targets: aarch64-unknown-none,x86_64-unknown-linux-gnu
       #   components: clippy
 
     - run: rustup -Vv
@@ -34,6 +37,6 @@ jobs:
 
     - name: test
       run: |
-        rustup target add aarch64-unknown-none
-        cd && gh repo clone arceos-org/arm_gicv2 && cd arm_gicv2
-        cargo +nightly semver-checks --target aarch64-unknown-none
+        cd && gh repo clone Azure-stars/kernel_elf_parser && cd kernel_elf_parser
+        cargo +${{ env.TOOLCHAIN }} semver-checks --target aarch64-unknown-none
+        cargo +${{ env.TOOLCHAIN }} semver-checks --target x86_64-unknown-linux-gnu
