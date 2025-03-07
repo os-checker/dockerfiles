@@ -10,7 +10,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
 
       - name: Install cargo-outdated
