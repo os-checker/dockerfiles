@@ -13,8 +13,9 @@ jobs:
     steps:
     # - run: sudo apt search fuse3
     # - run: sudo apt install libfuse-dev fuse3 libfuse3-dev -y
-    - uses: dtolnay/rust-toolchain@nightly
-      # with:
+    - uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: nightly-2025-01-26
       #   components: clippy
 
     - run: rustup -Vv
