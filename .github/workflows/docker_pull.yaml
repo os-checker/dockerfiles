@@ -8,7 +8,7 @@ env:
 jobs:
   run:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
       - uses: actions/checkout@v4
 
@@ -20,7 +20,7 @@ jobs:
           mv run.sh /check
           cd /check
           # os-checker config JSON file
-          echo '{"os-checker/os-checker-test-suite":{}}' >repos.json
+          echo '{"anza-xyz/agave":{}}' >repos.json
 
       # - name: Pull os-checker docker
       #   run: docker pull ${{ env.IMAGE }}
