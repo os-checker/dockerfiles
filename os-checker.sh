@@ -16,13 +16,13 @@ git switch main
 cargo install --path checker --no-default-features -F z3,z3-sys --locked
 cargo mirai --help
 
-# Install Rap
-git clone https://github.com/os-checker/RAP.git $INSTALL/rap
-cd $INSTALL/rap
+# Install RAPx
+git clone https://github.com/os-checker/RAPx.git $INSTALL/rapx
+cd $INSTALL/rapx
 git switch main
-cd rap
+cd rapx
 cargo install --path .
-cargo rap --help
+cargo rapx --help
 
 # Install Lockbud
 git clone https://github.com/os-checker/lockbud.git $INSTALL/lockbud
