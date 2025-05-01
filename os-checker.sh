@@ -33,10 +33,10 @@ git switch all
 cargo install --path .
 cargo lockbud --help
 
-cd /check
+cd /os_checker
 
 # Temporarily set rustup toolchain to make cargo commands work
-rustup default nightly-2024-12-19
+rustup default nightly-2025-02-01
 
 # Install cargo-binstall
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
