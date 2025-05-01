@@ -45,8 +45,8 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 cargo binstall --force -y cargo-audit && cargo audit --version
 
 # Install cargo-outdated
-# cargo binstall --force -y cargo-outdated && cargo outdated --version
-cargo install --git https://github.com/os-checker/cargo-outdated.git --branch os-checker
+cargo binstall --force -y cargo-outdated && cargo outdated --version
+# cargo install --git https://github.com/os-checker/cargo-outdated.git --branch os-checker
 
 # Install cargo-geiger
 cargo binstall --force -y cargo-geiger && cargo geiger --version
