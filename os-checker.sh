@@ -1,3 +1,5 @@
+set -ex
+
 export INSTALL=/os_checker/install
 
 mkdir $INSTALL
