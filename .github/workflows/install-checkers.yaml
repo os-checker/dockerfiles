@@ -14,6 +14,11 @@ jobs:
     if: true
     steps:
 
+      - name: Install cargo-binstall
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-binstall
+
       - name: Install AtomVChecker
         run: |
           git clone https://github.com/os-checker/atomicvchecker
