@@ -18,7 +18,7 @@ jobs:
         run: |
           git clone https://github.com/os-checker/atomicvchecker
           cd atomicvchecker/section-5-detection/AtomVChecker
-          cargo install --path .
+          cargo install --path . --locked
           cargo atomicvchecker --help
 
       - name: Install cargo-updes
