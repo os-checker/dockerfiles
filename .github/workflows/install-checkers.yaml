@@ -22,7 +22,7 @@ jobs:
           cargo atomicvchecker --help
 
       - name: Install cargo-updes
-        run: cargo binstall --force -y cargo-udeps --locked
+        run: cargo binstall --force -y cargo-udeps --locked && cargo udeps --version
 
       - name: Install cargo-outdated
         run: cargo binstall --force -y cargo-outdated && cargo outdated --version
@@ -83,5 +83,5 @@ jobs:
         run: |
           cd ~/.cargo/bin/
           ls -alh
-          tar -cJf checkers.tar.xz rapx cargo-rapx lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest
+          tar -cJf checkers.tar.xz rapx cargo-rapx lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest atomicvchecker cargo-atomicvchecker cargo-udeps
           gh release upload --clobber -R os-checker/database ${{ env.TAG_PRECOMPILED_CHECKERS }} checkers.tar.xz
