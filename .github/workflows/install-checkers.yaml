@@ -19,7 +19,7 @@ jobs:
           git clone https://github.com/os-checker/atomicvchecker
           cd atomicvchecker/section-5-detection/AtomVChecker
           cargo install --path . --locked
-          cargo atomicvchecker --help
+          cargo atomvchecker --help
 
       - name: Install cargo-updes
         run: cargo binstall --force -y cargo-udeps --locked && cargo udeps --version
@@ -83,5 +83,5 @@ jobs:
         run: |
           cd ~/.cargo/bin/
           ls -alh
-          tar -cJf checkers.tar.xz rapx cargo-rapx lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest atomicvchecker cargo-atomicvchecker cargo-udeps
+          tar -cJf checkers.tar.xz rapx cargo-rapx lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest atomvchecker cargo-atomvchecker cargo-udeps
           gh release upload --clobber -R os-checker/database ${{ env.TAG_PRECOMPILED_CHECKERS }} checkers.tar.xz
