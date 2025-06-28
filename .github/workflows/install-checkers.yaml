@@ -6,21 +6,31 @@ env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
   CARGO_TERM_COLOR: always
   XZ_OPT: -e9
+  TAG_PRECOMPILED_CHECKERS: cache-os-checker-v0.8.0.redb
 
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
 
-      - name: Install cargo-outdated
-        # run: cargo binstall --force -y cargo-outdated && cargo outdated --version
-        # see: https://github.com/os-checker/os-checker/issues/196#issuecomment-2554681286
+      - name: Install cargo-binstall
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-binstall
+
+      - name: Install AtomVChecker
         run: |
-          rustup default nightly
-          cargo install --git https://github.com/os-checker/cargo-outdated.git --branch os-checker --locked
-          cd ~ && git clone https://github.com/os-checker/test-flatten_objects.git && cd test-flatten_objects
-          cargo +nightly outdated
+          git clone https://github.com/os-checker/atomicvchecker
+          cd atomicvchecker/section-5-detection/AtomVChecker
+          cargo install --path . --locked
+          cargo atomvchecker --help
+
+      - name: Install cargo-updes
+        run: cargo binstall --force -y cargo-udeps --locked && cargo udeps --version
+
+      - name: Install cargo-outdated
+        run: cargo binstall --force -y cargo-outdated && cargo outdated --version
 
       - name: Install cargo-semver-checks
         # run: cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
@@ -78,5 +88,5 @@ jobs:
         run: |
           cd ~/.cargo/bin/
           ls -alh
-          tar -cJf checkers.tar.xz rapx cargo-rapx lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest
-          gh release upload --clobber -R os-checker/database precompiled-checkers checkers.tar.xz
+          tar -cJf checkers.tar.xz rapx cargo-rapx lockbud cargo-lockbud mirai cargo-mirai rudra cargo-rudra cargo-binstall cargo-audit cargo-outdated cargo-geiger cargo-semver-checks cargo-nextest atomvchecker cargo-atomvchecker cargo-udeps
+          gh release upload --clobber -R os-checker/database ${{ env.TAG_PRECOMPILED_CHECKERS }} checkers.tar.xz
