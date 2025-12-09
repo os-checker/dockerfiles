@@ -23,6 +23,9 @@ jobs:
           rustup default nightly-2025-09-10
           rustup target add x86_64-unknown-none
 
+      - name: install graphvis
+        run: sudo apt update && sudo apt install -y graphviz 
+
       - name: check
         run: |
           cd kernel
