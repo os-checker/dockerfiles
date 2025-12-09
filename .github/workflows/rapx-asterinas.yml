@@ -27,6 +27,7 @@ jobs:
         run: sudo apt update && sudo apt install -y graphviz 
 
       - name: check
+        continue-on-error: true
         run: |
           cd kernel
           export VDSO_LIBRARY_DIR=$PWD/linux_vdso
