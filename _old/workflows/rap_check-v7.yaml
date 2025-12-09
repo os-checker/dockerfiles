@@ -11,7 +11,7 @@ env:
   RAP_LOG: info
   PLUS_RAP_TOOLCHAIN: +nightly-2024-06-30
   RAP_TOOLCHAIN: nightly-2024-06-30
-  REBUILD: true
+  REBUILD: false
 
 jobs:
   check:

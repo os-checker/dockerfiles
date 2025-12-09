@@ -1,0 +1,31 @@
+name: RAPx - Asterinas
+
+on: [push]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: os-checker/asterinas
+          ref: rapx
+
+      - name: install rapx
+        run: |
+          cd
+          git clone https://github.com/Artisan-Lab/RAPx
+          cd RAPx
+          ./install.sh
+
+      - name: check
+        run: |
+          cd kernel
+          export VDSO_LIBRARY_DIR=$PWD/linux_vdso
+          cargo rapx -F -M -timeout=36000 -- --target x86_64-unknown-none 2>&1 1>rapx.txt
+
+      - name: upload rapx.txt
+        uses: actions/upload-artifact@v4
+        with:
+          path: kernel/rapx.txt
+          name: rapx.txt
