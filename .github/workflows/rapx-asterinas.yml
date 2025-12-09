@@ -18,6 +18,11 @@ jobs:
           cd RAPx
           ./install.sh
 
+      - name: setup toolchain
+        run: |
+          rustup default nightly-2025-09-10
+          rustup target add x86_64-unknown-none
+
       - name: check
         run: |
           cd kernel
