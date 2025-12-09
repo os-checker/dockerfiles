@@ -30,7 +30,7 @@ jobs:
         run: |
           cd kernel
           export VDSO_LIBRARY_DIR=$PWD/linux_vdso
-          cargo rapx -F -M -timeout=36000 -- --target x86_64-unknown-none 2>&1 1>rapx.txt
+          cargo rapx -F -M -- --target x86_64-unknown-none 2>&1 1>rapx.txt
 
       - name: upload rapx.txt
         uses: actions/upload-artifact@v4
