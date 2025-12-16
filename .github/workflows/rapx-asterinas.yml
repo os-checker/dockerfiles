@@ -14,8 +14,9 @@ jobs:
       - name: install rapx
         run: |
           cd
-          git clone https://github.com/Artisan-Lab/RAPx
+          git clone https://github.com/os-checker/RAPx
           cd RAPx
+          git switch fix-bb_-1
           ./install.sh
 
       - name: setup toolchain
