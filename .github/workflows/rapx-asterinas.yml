@@ -27,7 +27,13 @@ jobs:
       - name: install graphvis
         run: sudo apt update && sudo apt install -y graphviz 
 
-      - name: check
+      - name: check osdk
+        continue-on-error: true
+        run: |
+          cd osdk
+          cargo rapx -F -M 2>&1 1>rapx.txt
+
+      - name: check kernel
         continue-on-error: true
         run: |
           cd kernel
@@ -37,5 +43,7 @@ jobs:
       - name: upload rapx.txt
         uses: actions/upload-artifact@v4
         with:
-          path: kernel/rapx.txt
+          path: |
+            kernel/rapx.txt
+            osdk/rapx.txt
           name: rapx.txt
