@@ -1,0 +1,10 @@
+name: View Disk
+
+on: [push]
+
+jobs:
+  view:
+    runs-on: ubuntu-latest
+    steps:
+      - run: df -alh
+
