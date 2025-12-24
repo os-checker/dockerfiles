@@ -1,8 +1,16 @@
+#!/bin/bash
+
 set -ex
 
 export INSTALL=/os_checker/install
 
 mkdir $INSTALL
+
+# Install AtomVChecker
+git clone https://github.com/os-checker/atomicvchecker
+cd atomicvchecker/section-5-detection/AtomVChecker
+cargo install --path . --locked
+cargo atomvchecker --help
 
 # Install Rudra
 git clone https://github.com/os-checker/Rudra.git $INSTALL/rudra
@@ -36,7 +44,11 @@ cargo lockbud --help
 cd /os_checker
 
 # Temporarily set rustup toolchain to make cargo commands work
-rustup default nightly-2025-02-01
+rustup default nightly-2025-12-06
+
+# Install cargo-semver-checks
+# cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
+cargo install --git https://github.com/os-checker/cargo-semver-checks.git --branch fix--target-2025-12 --locked cargo-semver-checks && cargo semver-checks --version
 
 # Install cargo-binstall
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
@@ -44,15 +56,15 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 # Install cargo-audit
 cargo binstall --force -y cargo-audit && cargo audit --version
 
+# Install cargo-udeps
+cargo binstall --force -y cargo-udeps --locked && cargo udeps --version
+
 # Install cargo-outdated
 cargo binstall --force -y cargo-outdated && cargo outdated --version
 # cargo install --git https://github.com/os-checker/cargo-outdated.git --branch os-checker
 
 # Install cargo-geiger
 cargo binstall --force -y cargo-geiger && cargo geiger --version
-
-# Install cargo-semver-checks
-cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
 
 # Install cargo-nextest
 cargo binstall --force -y cargo-nextest && cargo nextest --version
