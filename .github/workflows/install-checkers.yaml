@@ -6,14 +6,13 @@ env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
   CARGO_TERM_COLOR: always
   XZ_OPT: -e9
-  TAG_PRECOMPILED_CHECKERS: cache-os-checker-v0.8.0.redb
+  TAG_PRECOMPILED_CHECKERS: cache-os-checker-v0.8.1.redb
 
 jobs:
   install:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
-
       - name: Install cargo-binstall
         uses: taiki-e/install-action@v2
         with:
@@ -21,23 +20,27 @@ jobs:
 
       - name: Install AtomVChecker
         run: |
+          # nightly-2023-03-09
           git clone https://github.com/os-checker/atomicvchecker
           cd atomicvchecker/section-5-detection/AtomVChecker
           cargo install --path . --locked
           cargo atomvchecker --help
 
       - name: Install cargo-updes
+        # v0.1.60
         run: cargo binstall --force -y cargo-udeps --locked && cargo udeps --version
 
       - name: Install cargo-outdated
+        # v0.17.0
         run: cargo binstall --force -y cargo-outdated && cargo outdated --version
 
       - name: Install cargo-semver-checks
         # run: cargo binstall --force -y cargo-semver-checks && cargo semver-checks --version
         # see https://github.com/obi1kenobi/cargo-semver-checks/issues/1068
-        run: cargo install --git https://github.com/os-checker/cargo-semver-checks.git --branch "fix/--target" --locked cargo-semver-checks && cargo semver-checks --version
+        run: cargo install --git https://github.com/os-checker/cargo-semver-checks.git --branch fix--target-2025-12 --locked cargo-semver-checks && cargo semver-checks --version
 
       - name: Install RAPx
+        # nightly-2025-12-06
         run: |
           git clone https://github.com/os-checker/RAPx.git
           cd RAPx
@@ -47,6 +50,7 @@ jobs:
           cargo rapx --help
 
       - name: Install Rudra
+        # nightly-2021-10-21
         run: |
           git clone https://github.com/os-checker/Rudra.git
           cd Rudra
@@ -55,6 +59,7 @@ jobs:
           cargo rudra --help
 
       - name: Install Mirai
+        # nightly-2025-01-10
         run: |
           git clone https://github.com/os-checker/MIRAI.git
           cd MIRAI
@@ -63,6 +68,7 @@ jobs:
           cargo mirai --help
 
       - name: Install Lockbud
+        # nightly 2025-02-01
         run: |
           git clone https://github.com/os-checker/lockbud.git
           cd lockbud
@@ -76,12 +82,15 @@ jobs:
         run: curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
       - name: Install cargo-audit
+        # v0.22.0
         run: cargo binstall --force -y cargo-audit && cargo audit --version
 
       - name: Install cargo-geiger
+        # v0.13.0
         run: cargo binstall --force -y cargo-geiger && cargo geiger --version
 
       - name: Install cargo-nextest
+        # v0.9.115
         run: cargo binstall --force -y cargo-nextest && cargo nextest --version
 
       - name: Upload Precompiled Checkers to database
