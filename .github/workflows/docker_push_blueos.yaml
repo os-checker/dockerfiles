@@ -3,7 +3,7 @@ name: Build & Push Docker for BlueOS
 on: [push]
 
 env:
-  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/blueos:nightly-2026-07-21
+  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/blueos:nightly-2026-07-21_v3
   IMAGE_TAR: /tmp/os-checker.tar
 
 jobs:

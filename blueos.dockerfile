@@ -47,7 +47,7 @@ RUN mkdir -p /opt/sysroot \
     && tar xf qemu.tar.xz -C /opt/sysroot \
     && rm qemu.tar.xz
 
-ARG RUST_TOOLCHAIN_RELEASE=https://github.com/KMiri-rs/vivoblueos-toolchain/releases/download/rustc-sysroot-nightly-2026-07-21_v2/rustc-sysroot-nightly-2026-07-21.tar.xz
+ARG RUST_TOOLCHAIN_RELEASE=https://github.com/KMiri-rs/vivoblueos-toolchain/releases/download/rustc-sysroot-nightly-2026-07-21_v3/rustc-sysroot-nightly-2026-07-21.tar.xz
 # Download and unpack prebuilt Rust toolchain
 RUN curl -L -o blueos-toolchain.tar.xz $RUST_TOOLCHAIN_RELEASE \
     && tar xf blueos-toolchain.tar.xz -C /opt \
